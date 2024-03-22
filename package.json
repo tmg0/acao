@@ -33,12 +33,11 @@
   "dependencies": {
     "c12": "^1.10.0",
     "citty": "^0.1.6",
-    "execa": "^8.0.1",
-    "fs-extra": "^11.2.0"
+    "defu": "^6.1.4",
+    "execa": "^8.0.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.9.0",
-    "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.11.30",
     "eslint": "^8.57.0",
     "tsup": "^8.0.2",

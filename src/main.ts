@@ -1,24 +1,20 @@
 import { defineCommand } from 'citty'
 import { loadConfig } from 'c12'
 import { version } from '../package.json'
-import { resolveGit } from './git'
-import type { DefineConfigOptions } from '.'
+import type { Options } from './types'
 
 export const main = defineCommand({
   meta: { name: 'acao', version },
   async run() {
-    const { config } = await loadConfig<DefineConfigOptions>({ name: 'acao' })
+    const { config } = await loadConfig<Options>({ name: 'acao', globalRc: false })
+
     if (!config)
       return
 
-    const git = await resolveGit()
-    const options = { git }
-
-    const jobs = config(options)?.jobs ?? {}
-
-    for (const [_, job] of Object.entries(jobs)) {
+    for (const [_, job] of Object.entries(config.jobs)) {
+      const ctx: string[] = []
       for (const step of job.steps)
-        await step()
+        ctx.push(await step(ctx))
     }
   },
 })

@@ -1,5 +1,6 @@
+import { defu } from 'defu'
 import type { Options } from './types'
 
 export function resolveOptions(rawOptions: Partial<Options>) {
-  return rawOptions as Options
+  return defu(rawOptions, {}) as Options
 }
