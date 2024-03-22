@@ -4,7 +4,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/acao)](https://www.npmjs.com/package/acao)
 
-🎬 Automate your software workflows with javascript.
+🎬 Automate your software workflows with javascript. Make code reviews, branch management, and issue triaging work the way you want.
 
 ## Features
 
