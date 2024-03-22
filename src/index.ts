@@ -14,7 +14,7 @@ export type RunCmd = string | ((ctx: string[]) => string | Promise<string>)
 
 const isString = (value: any): value is string => typeof value === 'string'
 
-export function run(cmd: RunCmd, options: Partial<RunOptions> = { stdio: 'inherit' }) {
+export function run(cmd: RunCmd, options: Partial<RunOptions> = {}) {
   return async function (ctx: string[]) {
     cmd = isString(cmd) ? cmd : await cmd(ctx)
     const { stdout } = await execaCommand(cmd, options)
