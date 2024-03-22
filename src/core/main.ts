@@ -5,13 +5,24 @@ import type { Options } from './types'
 
 export const main = defineCommand({
   meta: { name: 'acao', version },
-  async run() {
+
+  args: {
+    job: {
+      type: 'positional',
+      description: 'Specific job name',
+      required: false,
+    },
+  },
+
+  async run({ args: { _: argJobs } }) {
     const { config } = await loadConfig<Options>({ name: 'acao', globalRc: false })
 
     if (!config)
       return
 
-    for (const [_, job] of Object.entries(config.jobs)) {
+    const jobs = argJobs ? Object.entries(config.jobs).filter(([name]) => argJobs.includes(name)) : Object.entries(config.jobs)
+
+    for (const [_, job] of jobs) {
       const ctx: string[] = []
       for (const step of job.steps)
         ctx.push(await step(ctx))
