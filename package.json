@@ -1,7 +1,7 @@
 {
   "name": "acao",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Run command line jobs smoothly by javascript",
   "author": "tmg0",
   "license": "MIT",
@@ -21,8 +21,8 @@
   ],
   "main": "dist/index.js",
   "scripts": {
-    "dev": "tsup-node --watch",
-    "build": "tsup-node",
+    "dev": "tsup --watch",
+    "build": "tsup",
     "test": "vitest",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.9.0",
+    "@types/node": "^20.11.30",
     "eslint": "^8.57.0",
     "tsup": "^8.0.2",
     "typescript": "^5.4.3",
