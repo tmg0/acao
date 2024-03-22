@@ -1,8 +1,8 @@
 import type { Options as ExecaOptions } from 'execa'
 import { execaCommand } from 'execa'
 import { runMain as _runMain } from 'citty'
-import { main } from './main'
-import type { Options } from './types'
+import { main } from './core/main'
+import type { Options } from './core/types'
 
 export const runMain = () => _runMain(main)
 

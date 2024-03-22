@@ -1,6 +1,6 @@
 import { defineCommand } from 'citty'
 import { loadConfig } from 'c12'
-import { version } from '../package.json'
+import { version } from '../../package.json'
 import type { Options } from './types'
 
 export const main = defineCommand({

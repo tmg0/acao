@@ -1,0 +1,11 @@
+{
+  "name": "@acao/git",
+  "version": "0.0.0",
+  "author": "tmg0",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest"
+  }
+}
