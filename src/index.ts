@@ -10,7 +10,7 @@ export type DefineConfigOptions = (options: Options) => Partial<Acao>
 export const runMain = () => _runMain(main)
 
 export function run(cmd: string) {
-  return execaCommand(cmd, { stdio: 'inherit' })
+  return () => execaCommand(cmd, { stdio: 'inherit' })
 }
 
 export function defineConfig(options: DefineConfigOptions) {

@@ -18,7 +18,7 @@ export const main = defineCommand({
 
     for (const [_, job] of Object.entries(jobs)) {
       for (const step of job.steps)
-        await step
+        await step()
     }
   },
 })

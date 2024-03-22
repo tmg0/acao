@@ -3,7 +3,7 @@ import { resolveGit } from '../src/git'
 
 describe('git', () => {
   it('resolve git', async () => {
-    const { branch } = await resolveGit()
-    expect(branch).toBe('main')
+    const git = await resolveGit()
+    expect(git?.branch).toBe('main')
   })
 })

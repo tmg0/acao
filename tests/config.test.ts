@@ -4,7 +4,7 @@ import { defineConfig } from '../src'
 describe('config', () => {
   it('define config', async () => {
     defineConfig((options) => {
-      expect(options.git.branch).toBe('main')
+      expect(options.git?.branch).toBe('main')
       return {}
     })
   })

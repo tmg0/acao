@@ -7,10 +7,10 @@ export interface GitOptions {
 }
 
 export interface Options {
-  git: GitOptions
+  git: GitOptions | undefined
 }
 
-export type AcaoJobStep = (...args: any[]) => ReturnType<typeof execa>
+export type AcaoJobStep = () => ReturnType<typeof execa>
 
 export interface AcaoJob {
   steps: AcaoJobStep[]
