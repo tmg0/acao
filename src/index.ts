@@ -2,10 +2,9 @@ import { execaCommand } from 'execa'
 import { runMain as _runMain } from 'citty'
 import { main } from './core/main'
 import type { AcaoContext, AcaoJobStep, Options, RunCmd, RunOptions } from './core/types'
+import { isString } from './core/utils'
 
 export const runMain = () => _runMain(main)
-
-const isString = (value: any): value is string => typeof value === 'string'
 
 export function run(cmd: RunCmd, options: Partial<RunOptions> = {}): AcaoJobStep {
   return async function (prev: any, ctx: AcaoContext) {
