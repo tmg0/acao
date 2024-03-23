@@ -1,7 +1,7 @@
 import { defineCommand } from 'citty'
 import { loadConfig } from 'c12'
 import { version } from '../../package.json'
-import type { Options } from './types'
+import type { AcaoJob, Options } from './types'
 
 export const main = defineCommand({
   meta: { name: 'acao', version },
@@ -14,18 +14,30 @@ export const main = defineCommand({
     },
   },
 
-  async run({ args: { _: argJobs } }) {
+  async run({ args: { _: filters } }) {
     const { config } = await loadConfig<Options>({ name: 'acao', globalRc: false })
 
     if (!config)
       return
 
-    const jobs = argJobs ? Object.entries(config.jobs).filter(([name]) => argJobs.includes(name)) : Object.entries(config.jobs)
+    const ctx: Record<string, string[]> = {}
 
-    for (const [_, job] of jobs) {
-      const ctx: string[] = []
-      for (const step of job.steps)
-        ctx.push(await step(ctx))
+    const jobs = (() => {
+      if (!filters?.length)
+        return Object.entries(config.jobs)
+      return filters.map(job => [job, config.jobs[job]]) as [string, AcaoJob][]
+    })()
+
+    for (const [name, job] of jobs) {
+      if (!ctx[name])
+        ctx[name] = []
+      let index = 0
+      for (const step of job.steps) {
+        const prev = index > 0 ? ctx[name][index - 1] : undefined
+        const stdout = await step(prev, ctx)
+        ctx[name].push(stdout)
+        index = index + 1
+      }
     }
   },
 })

@@ -10,13 +10,13 @@ export interface RunOptions extends ExecaOptions {
   transform: (stdout: string) => string | Promise<string>
 }
 
-export type RunCmd = string | ((ctx: string[]) => string | Promise<string>)
+export type RunCmd = string | ((prev: string | undefined, ctx: Record<string, string[]>) => string | Promise<string>)
 
 const isString = (value: any): value is string => typeof value === 'string'
 
 export function run(cmd: RunCmd, options: Partial<RunOptions> = {}) {
-  return async function (ctx: string[]) {
-    cmd = isString(cmd) ? cmd : await cmd(ctx)
+  return async function (prev: string | undefined, ctx: Record<string, string[]>) {
+    cmd = isString(cmd) ? cmd : await cmd(prev, ctx)
     const { stdout } = await execaCommand(cmd, options)
     if (!options.transform)
       return stdout

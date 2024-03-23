@@ -47,7 +47,7 @@ export default defineConfig({
   jobs: {
     ci: {
       steps: [
-        run('Hello acao', { stdio: 'inherit' }),
+        run('echo Hello', { stdio: 'inherit' }),
       ],
     },
   },

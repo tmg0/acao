@@ -1,4 +1,4 @@
-export type AcaoJobStep = (ctx: string[]) => Promise<string>
+export type AcaoJobStep = (prev: string | undefined, ctx: Record<string, string[]>) => Promise<string>
 
 export interface AcaoJob {
   steps: AcaoJobStep[]
