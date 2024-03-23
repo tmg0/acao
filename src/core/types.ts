@@ -16,11 +16,12 @@ export interface AcaoJob {
 }
 
 export interface Options {
+  extends: string | string[]
   jobs: Record<string, AcaoJob>
 }
 
 export interface RunOptions extends ExecaOptions {
-  remote: boolean
+  ssh: boolean
   transform: (stdout: string) => string | Promise<string>
 }
 

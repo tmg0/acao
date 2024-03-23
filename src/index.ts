@@ -12,7 +12,7 @@ const isString = (value: any): value is string => typeof value === 'string'
 export function run(cmd: RunCmd, options: Partial<RunOptions> = {}) {
   return async function (prev: string | undefined, ctx: AcaoContext, runtime: AcaoRuntime) {
     const _cmd = isString(cmd) ? cmd : await cmd(prev, ctx, runtime)
-    const isRemote = options.remote ?? !!runtime.ssh
+    const isRemote = options.ssh ?? !!runtime.ssh
     const { stdout } = isRemote ? await runtime.ssh?.execCommand(_cmd, options) : await execaCommand(_cmd, options)
     if (!options.transform)
       return stdout
@@ -20,6 +20,6 @@ export function run(cmd: RunCmd, options: Partial<RunOptions> = {}) {
   }
 }
 
-export function defineConfig(options: Options) {
+export function defineConfig(options: Partial<Options>) {
   return options
 }
