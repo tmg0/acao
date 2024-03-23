@@ -26,7 +26,7 @@ export function createAcao(rawOptions: Partial<Options> | undefined | null = {})
       let index = 0
       for (const step of job.steps) {
         const prev = index > 0 ? ctx.outputs[name][index - 1] : undefined
-        const stdout = await step(prev, ctx, { job: name, step: index, ssh })
+        const stdout = await step(prev, { ...ctx, job: name, step: index, ssh })
         ctx.outputs[name].push(stdout)
         index = index + 1
       }
