@@ -8,7 +8,7 @@ export interface SSHOptions {
   port?: string | number
 }
 
-export type AcaoJobStep = (prev: string | undefined, ctx: AcaoContext) => Promise<string>
+export type AcaoJobStep = (prev: any, ctx: AcaoContext) => Promise<any>
 
 export interface AcaoJob {
   ssh?: SSHOptions
@@ -20,9 +20,11 @@ export interface Options {
   jobs: Record<string, AcaoJob>
 }
 
+export type RunCmd = string | ((prev: any, ctx: AcaoContext) => string | Promise<string>)
+
 export interface RunOptions extends ExecaOptions {
   ssh: boolean
-  transform: (stdout: string) => string | Promise<string>
+  transform: (stdout: string) => any | Promise<any>
 }
 
 export interface AcaoContext {
