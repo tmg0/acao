@@ -1,6 +1,7 @@
 import { resolveOptions } from './options'
 import { createSSH } from './ssh'
-import type { AcaoContext, AcaoJob, Options } from './types'
+import type { AcaoContext, Options } from './types'
+import { normalizeJobs, sliceRequiredJobs } from './utils'
 
 export function createAcao(rawOptions: Partial<Options> | undefined | null = {}) {
   const options = resolveOptions(rawOptions)
@@ -10,27 +11,25 @@ export function createAcao(rawOptions: Partial<Options> | undefined | null = {})
     outputs: {},
   }
 
-  async function runJobs(filters: string[] = []) {
-    const jobs = (() => {
-      if (!filters?.length)
-        return Object.entries(options.jobs)
-      return filters.map(job => [job, options.jobs[job]]) as [string, AcaoJob][]
-    })()
+  async function runJobs(requires: string[] = []) {
+    const jobs = sliceRequiredJobs(normalizeJobs(options.jobs), requires)
 
-    for (const [name, job] of jobs) {
-      const ssh = createSSH(job.ssh)
-      if (ssh)
-        await ssh.connect?.()
-      if (!ctx.outputs[name])
-        ctx.outputs[name] = []
-      let index = 0
-      for (const step of job.steps) {
-        const prev = index > 0 ? ctx.outputs[name][index - 1] : undefined
-        const stdout = await step(prev, { ...ctx, job: name, step: index, ssh })
-        ctx.outputs[name].push(stdout)
-        index = index + 1
-      }
-      ssh?.close()
+    for (const batch of jobs) {
+      await Promise.all(batch.map(job => (async function () {
+        const ssh = createSSH(job.ssh)
+        if (ssh)
+          await ssh.connect?.()
+        if (!ctx.outputs[job.name])
+          ctx.outputs[job.name] = []
+        let index = 0
+        for (const step of job.steps) {
+          const prev = index > 0 ? ctx.outputs[job.name][index - 1] : undefined
+          const stdout = await step(prev, { ...ctx, job: job.name, step: index, ssh })
+          ctx.outputs[job.name].push(stdout)
+          index = index + 1
+        }
+        ssh?.close()
+      })()))
     }
   }
 
