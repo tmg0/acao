@@ -10,8 +10,8 @@ export function createAcao(rawOptions: Partial<Options> | undefined | null = {})
     outputs: {},
   }
 
-  async function runJobs(requires: string[] = []) {
-    const ordered = filterJobs(orderJobs(options.jobs), requires)
+  async function runJobs(filters: string[] = []) {
+    const ordered = filterJobs(orderJobs(options.jobs), filters)
 
     for (const batch of ordered) {
       await Promise.all(batch.map(name => (async function () {
@@ -39,19 +39,19 @@ export function createAcao(rawOptions: Partial<Options> | undefined | null = {})
   }
 }
 
-export function filterJobs(jobs: string[][], filter: string[]) {
-  if (!filter?.length)
+export function filterJobs(jobs: string[][], filters: string[]) {
+  if (!filters?.length)
     return jobs
 
   const _jobs: string[][] = []
 
   for (const batch of jobs) {
-    if (!filter.some(name => batch.includes(name))) {
+    if (!filters.some(name => batch.includes(name))) {
       _jobs.push(batch)
       continue
     }
 
-    const requiredBatches = batch.filter(name => filter.includes(name))
+    const requiredBatches = batch.filter(name => filters.includes(name))
     if (requiredBatches.length > 0) {
       _jobs.push(requiredBatches)
       break
@@ -92,12 +92,12 @@ export function orderJobs(jobs: Record<string, AcaoJob>) {
     const batch = []
     const nextQueue = []
 
-    for (const task of queue) {
-      batch.push(task)
-      for (const nextTask of graph[task]) {
-        inDegree[nextTask]--
-        if (inDegree[nextTask] === 0)
-          nextQueue.push(nextTask)
+    for (const name of queue) {
+      batch.push(name)
+      for (const next of graph[name]) {
+        inDegree[next]--
+        if (inDegree[next] === 0)
+          nextQueue.push(next)
       }
     }
 
