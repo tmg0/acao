@@ -8,10 +8,11 @@ export interface SSHOptions {
   port?: string | number
 }
 
-export type AcaoJobStep = (prev: any, ctx: AcaoContext) => Promise<string | undefined | void>
+export type AcaoJobStep = (prev: any, ctx: AcaoContext) => Promise<any>
 
 export interface AcaoJob {
   ssh?: SSHOptions
+  needs?: string | string[]
   steps: AcaoJobStep[]
 }
 
