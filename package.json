@@ -50,6 +50,9 @@
   "bin": {
     "acao": "./bin/acao.mjs"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",
