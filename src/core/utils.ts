@@ -1,26 +1,27 @@
-import { klona } from 'klona'
 import type { AcaoJob, NormalizedJob } from './types'
 
 export const isString = (value: any): value is string => typeof value === 'string'
 
 export function normalizeJobs(jobs: Record<string, AcaoJob>) {
   const _jobs: NormalizedJob[][] = []
-  const _original = klona(jobs)
-  let _inProcess = Object.keys(_original)
+  const _executed = new Set()
+
+  let _pendings = Object.entries(jobs).map(([name, job]) => ({ ...job, name }))
 
   function isFulfilled(name: string) {
     const job = jobs[name]
     const needs = [job.needs].flat().filter(Boolean)
     if (!needs?.length)
       return true
-    return needs.every(need => need && _jobs.flat().map(({ name }) => name).includes(need))
+    return needs.every(need => need && _executed.has(need))
   }
 
-  while (_inProcess.length) {
-    const batch = _inProcess.filter(name => isFulfilled(name)).map(name => ({ ..._original[name], name }))
+  while (_pendings.length) {
+    const batch = _pendings.filter(({ name }) => isFulfilled(name))
     if (!batch?.length)
       break
-    _inProcess = _inProcess.filter(jobId => !batch.map(({ name }) => name).includes(jobId))
+    batch.forEach(({ name }) => { _executed.add(name) })
+    _pendings = _pendings.filter(({ name }) => !_executed.has(name))
     _jobs.push(batch)
   }
 
@@ -34,14 +35,15 @@ export function sliceRequiredJobs(jobs: NormalizedJob[][], requires: string[]) {
   const _jobs: NormalizedJob[][] = []
 
   for (const batch of jobs) {
-    if (!requires.some(name => batch.map(({ name }) => name).includes(name))) {
+    const names = batch.map(({ name }) => name)
+    if (!requires.some(name => names.includes(name))) {
       _jobs.push(batch)
       continue
     }
 
-    const requiredBatch = batch.filter(({ name }) => requires.includes(name))
-    if (requiredBatch.length > 0) {
-      _jobs.push(requiredBatch)
+    const requiredBatches = batch.filter(({ name }) => requires.includes(name))
+    if (requiredBatches.length > 0) {
+      _jobs.push(requiredBatches)
       break
     }
   }
