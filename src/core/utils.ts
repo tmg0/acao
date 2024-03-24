@@ -20,7 +20,9 @@ export function normalizeJobs(jobs: Record<string, AcaoJob>) {
     const batch = _pendings.filter(({ name }) => isFulfilled(name))
     if (!batch?.length)
       break
-    batch.forEach(({ name }) => { _executed.add(name) })
+    batch.forEach(({ name }) => {
+      _executed.add(name)
+    })
     _pendings = _pendings.filter(({ name }) => !_executed.has(name))
     _jobs.push(batch)
   }
