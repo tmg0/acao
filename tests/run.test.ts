@@ -3,12 +3,12 @@ import { run } from '../src'
 
 describe('run', () => {
   it('basic', async () => {
-    const stdout = await run('echo Hello')(undefined, {} as any)
-    expect(stdout).toBe('"Hello"')
+    const stdout = await run('echo 1')(undefined, {} as any)
+    expect(stdout).toBe('1')
   })
 
   it('transform', async () => {
-    const stdout = await run('echo Hello', { transform: stdout => stdout[1] })(undefined, {} as any)
-    expect(stdout).toBe('H')
+    const stdout = await run('echo 1', { transform: stdout => Number(stdout) })(undefined, {} as any)
+    expect(stdout).toBe(1)
   })
 })
