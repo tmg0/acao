@@ -42,3 +42,5 @@ export interface SSH {
   execCommand: (cmd: string, options: ExecaOptions) => Promise<any>
   close: () => Client
 }
+
+export type NormalizedJob = AcaoJob & { name: string }
