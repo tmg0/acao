@@ -12,6 +12,7 @@ export type AcaoJobStep = (prev: any, ctx: AcaoContext) => Promise<any>
 
 export interface AcaoJob {
   ssh?: SSHOptions
+  needs?: string | string[]
   steps: AcaoJobStep[]
 }
 
