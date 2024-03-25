@@ -4,6 +4,7 @@ import type { AcaoContext, AcaoJob, Options } from './types'
 
 export function createAcao(rawOptions: Partial<Options> | undefined | null = {}) {
   const options = resolveOptions(rawOptions)
+  const jobs = orderJobs(options.jobs)
 
   const ctx: AcaoContext = {
     options,
@@ -11,7 +12,7 @@ export function createAcao(rawOptions: Partial<Options> | undefined | null = {})
   }
 
   async function runJobs(filters: string[] = []) {
-    const ordered = filterJobs(orderJobs(options.jobs), filters)
+    const ordered = filterJobs(jobs, filters)
 
     for (const batch of ordered) {
       await Promise.all(batch.map(name => (async function () {
@@ -35,6 +36,7 @@ export function createAcao(rawOptions: Partial<Options> | undefined | null = {})
 
   return {
     options,
+    jobs,
     runJobs,
   }
 }
