@@ -8,6 +8,6 @@ export default defineCommand({
   async run() {
     const { config } = await loadConfig<Options>({ name: 'acao', rcFile: false })
     const ctx = createAcao(config)
-    console.log(ctx.jobs)
+    console.log(JSON.stringify(ctx.jobs, null, 2))
   },
 })

@@ -33,11 +33,33 @@ pnpm add acao -D
 
 ## Usage
 
-Execute `acao` in terminal, typically at the same level as the `acao.config` file.
+Run `acao` in terminal, typically at the same level as the `acao.config` file.
 
-`Acao` will execute jobs in the order defined in the config file.
+### `acao run <JOB>`
 
-You can also specify the job to execute and its dependencies with `acao <job>`.
+You can execute jobs with 'acao run'.
+
+```bash
+acao run
+```
+
+Can also specify a single job or list of jobs
+
+```bash
+acao run ci cd
+```
+
+### `acao preview`
+
+Preview the execution order of jobs.
+
+```bash
+acao preview
+```
+
+## Config
+
+`Acao` will execute jobs with order defined in the config file.
 
 ### `Basic`
 
