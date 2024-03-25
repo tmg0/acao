@@ -1,7 +1,7 @@
 {
   "name": "acao",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Automate your software workflows with javascript.",
   "author": "tmg0",
   "license": "MIT",
