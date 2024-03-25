@@ -14,7 +14,7 @@
 
 💻 Simple way to format and pass outputs to the next step defaults by [destr](https://github.com/unjs/destr#readme)
 
-🎳 Support multiple type of config files by [c12](https://github.com/unjs/c12)
+🎳 Support multiple types of config by [c12](https://github.com/unjs/c12)
 
 🎁 Friendly command-line helps by [citty](https://github.com/unjs/citty)
 
@@ -33,7 +33,11 @@ pnpm add destr -D
 
 ## Usage
 
-Execute `acao` in terminal, typically at the same level as the `acao.config` file. And then `acao` will execute jobs in the order defined in the config file.
+Execute `acao` in terminal, typically at the same level as the `acao.config` file.
+
+`Acao` will execute jobs in the order defined in the config file.
+
+You can also specify the job to execute and its dependencies with `acao <job>`.
 
 ### `Basic`
 
