@@ -6,7 +6,7 @@ export interface ReadFileOptions extends RunOptions {}
 
 export type ReadFilePath = string | ((prev: any, ctx: AcaoContext) => string | Promise<string>)
 
-export function readFile(path: ReadFilePath, options: ReadFileOptions): AcaoJobStep {
+export function readFile(path: ReadFilePath, options: Partial<ReadFileOptions> = {}): AcaoJobStep {
   return async function (prev: string, ctx: AcaoContext) {
     const _path = isString(path) ? path : await path(prev, ctx)
     let stdout = ''
