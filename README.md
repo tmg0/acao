@@ -73,8 +73,6 @@ export default defineConfig({
 
 `Acao` exposes a `run` method to execute commands by [execa](https://github.com/sindresorhus/execa).
 
-**Example**
-
 ```ts
 run('echo Hello')
 ```
@@ -103,7 +101,7 @@ You can also configure `execa` through the second parameter, see [docs](https://
 
 If `stdio: inherit` is set, the console will use the child process's output. `prev` will be `undefined` in the next step, recommend to use this only when console output needs to be viewed.
 
-There are some extra options in the second parameter of `run`:
+Here are some extra options in the second parameter of `run`:
 
 ```ts
 export interface RunOptions extends ExecaOptions {
@@ -114,7 +112,7 @@ export interface RunOptions extends ExecaOptions {
 
 **Example**
 
-console output: 2
+In the following example, the console will output `2`
 
 ```ts
 // acao.config.ts
