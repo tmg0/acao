@@ -10,7 +10,7 @@
 
 🧲 Ordering based on the `needs` field for synchronous execution of jobs
 
-🕹️ Support for commands to be executed in a mix of local and remote environments by [ssh2](https://github.com/mscdex/ssh2#readme)
+🕹️ Support execute commands in a mix of local and remote environments by [ssh2](https://github.com/mscdex/ssh2#readme)
 
 💻 Simple way to format and pass outputs to the next step defaults by [destr](https://github.com/unjs/destr#readme)
 
@@ -25,10 +25,10 @@
 npm i acao -D
 
 # yarn
-yarn add destr -D
+yarn add acao -D
 
 # pnpm
-pnpm add destr -D
+pnpm add acao -D
 ```
 
 ## Usage
