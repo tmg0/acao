@@ -1,23 +1,26 @@
 import { defineCommand } from 'citty'
-import { loadConfig } from 'c12'
-import { version } from '../../package.json'
-import type { Options } from './types'
-import { createAcao } from './context'
+import { description, version } from '../../package.json'
+import { checkUpdates } from './npm'
 
 export const main = defineCommand({
-  meta: { name: 'acao', version },
+  meta: { name: 'acao', version, description },
 
   args: {
-    job: {
-      type: 'positional',
-      description: 'Specific job name',
+    noUpdateNotifier: {
+      type: 'boolean',
+      description: 'Ignore Acao update notifier',
       required: false,
+      default: false,
     },
   },
 
-  async run({ args: { _: filters } }) {
-    const { config } = await loadConfig<Options>({ name: 'acao', globalRc: false })
-    const ctx = createAcao(config)
-    await ctx.runJobs(filters)
+  async setup({ args }) {
+    if (!args.noUpdateNotifier)
+      await checkUpdates()
+  },
+
+  subCommands: {
+    run: import('./commands/run').then(r => r.default),
+    preview: import('./commands/preview').then(r => r.default),
   },
 })
