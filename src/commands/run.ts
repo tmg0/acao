@@ -1,7 +1,7 @@
 import { defineCommand } from 'citty'
 import { loadConfig } from 'c12'
-import type { Options } from '../types'
-import { createAcao } from '../context'
+import type { Options } from '../core/types'
+import { createAcao } from '../core/context'
 
 export default defineCommand({
   meta: { name: 'run', description: 'Run jobs' },

@@ -1,13 +1,15 @@
 import fs from 'node:fs/promises'
-import type { AcaoContext, AcaoJobStep, RunOptions } from '../core/types'
-import { isString } from '../core/utils'
+import { defineRunner } from 'acao'
+import type { AcaoContext, RunOptions } from 'acao'
 
 export interface ReadFileOptions extends RunOptions {}
 
 export type ReadFilePath = string | ((prev: any, ctx: AcaoContext) => string | Promise<string>)
 
-export function readFile(path: ReadFilePath, options: Partial<ReadFileOptions> = {}): AcaoJobStep {
-  return async function (prev: string, ctx: AcaoContext) {
+const isString = (value: any): value is string => typeof value === 'string'
+
+export function readFile(path: ReadFilePath, options: Partial<ReadFileOptions> = {}) {
+  return defineRunner(async (prev: any, ctx: AcaoContext) => {
     const _path = isString(path) ? path : await path(prev, ctx)
     let stdout = ''
     const ssh = options.ssh && ctx.ssh
@@ -18,5 +20,5 @@ export function readFile(path: ReadFilePath, options: Partial<ReadFileOptions> =
     if (!options.transform)
       return stdout
     return options.transform(stdout)
-  }
+  })
 }

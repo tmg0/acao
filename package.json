@@ -26,9 +26,14 @@
       "require": "./dist/index.cjs"
     },
     "./fs": {
-      "types": "./dist/fs/index.d.ts",
-      "import": "./dist/fs/index.js",
-      "require": "./dist/fs/index.cjs"
+      "types": "./dist/fs.d.ts",
+      "import": "./dist/fs.js",
+      "require": "./dist/fs.cjs"
+    },
+    "./volta": {
+      "types": "./dist/volta.d.ts",
+      "import": "./dist/volta.js",
+      "require": "./dist/volta.cjs"
     },
     "./*": [
       "./*",
@@ -79,6 +84,7 @@
     "@types/ssh2": "^1.15.0",
     "eslint": "^8.57.0",
     "eslint-plugin-oxlint": "^0.2.7",
+    "fast-glob": "^3.3.2",
     "oxlint": "^0.2.14",
     "tsup": "^8.0.2",
     "typescript": "^5.4.3",

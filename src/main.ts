@@ -1,6 +1,6 @@
 import { defineCommand } from 'citty'
-import { description, version } from '../../package.json'
-import { checkUpdates } from './npm'
+import { description, version } from '../package.json'
+import { checkUpdates } from './core/npm'
 
 export const main = defineCommand({
   meta: { name: 'acao', version, description },
@@ -20,7 +20,7 @@ export const main = defineCommand({
   },
 
   subCommands: {
-    run: import('../commands/run').then(r => r.default),
-    preview: import('../commands/preview').then(r => r.default),
+    run: import('./commands/run').then(r => r.default),
+    preview: import('./commands/preview').then(r => r.default),
   },
 })

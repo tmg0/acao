@@ -67,7 +67,7 @@ Create `acao.config.ts`
 
 ```js
 // acao.config.ts
-import { defineConfig, run } from './src/index'
+import { defineConfig, run } from 'acao'
 
 export default defineConfig({})
 ```
@@ -78,7 +78,7 @@ You can use `acao.config.{js,cjs,mjs,ts,mts,cts}` to specify configuration.
 
 ```ts
 // acao.config.ts
-import { defineConfig, run } from './src/index'
+import { defineConfig, run } from 'acao'
 
 export default defineConfig({
   jobs: {
@@ -105,7 +105,7 @@ Using `run` in `job.steps` also provides a simple way to obtain the output from 
 
 ```ts
 // acao.config.ts
-import { defineConfig, run } from './src/index'
+import { defineConfig, run } from 'acao'
 
 export default defineConfig({
   jobs: {
@@ -138,7 +138,7 @@ In the following example, the console will output `2`
 
 ```ts
 // acao.config.ts
-import { defineConfig, run } from './src/index'
+import { defineConfig, run } from 'acao'
 
 export default defineConfig({
   jobs: {
@@ -168,7 +168,7 @@ In the following example, the first command will be executed remotely, and the s
 
 ```ts
 // acao.config.ts
-import { defineConfig, run } from './src/index'
+import { defineConfig, run } from 'acao'
 
 export default defineConfig({
   jobs: {
@@ -198,7 +198,7 @@ In the following example, `second` will execute first, then `first` and `fourth`
 
 ```ts
 // acao.config.ts
-import { defineConfig, run } from './src/index'
+import { defineConfig, run } from 'acao'
 
 export default defineConfig({
   jobs: {

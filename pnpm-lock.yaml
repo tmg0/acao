@@ -57,6 +57,9 @@ importers:
       eslint-plugin-oxlint:
         specifier: ^0.2.7
         version: 0.2.7
+      fast-glob:
+        specifier: ^3.3.2
+        version: 3.3.2
       oxlint:
         specifier: ^0.2.14
         version: 0.2.14
@@ -73,7 +76,9 @@ importers:
         specifier: ^1.4.0
         version: 1.4.0(@types/node@20.11.30)
 
-  packages/git: {}
+  packages/fs: {}
+
+  packages/volta: {}
 
 packages:
 
