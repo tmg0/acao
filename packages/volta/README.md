@@ -11,7 +11,7 @@ Run a command with custom Node, npm, pnpm, and/or Yarn versions
 ```ts
 // acao.config.ts
 import { defineConfig, run } from 'acao'
-import { readFile } from 'acao/fs'
+import { voltaRun } from 'acao/volta'
 
 export default defineConfig({
   jobs: {
@@ -31,7 +31,7 @@ Locates the actual binary that will be called by Volta
 ```ts
 // acao.config.ts
 import { defineConfig, run } from 'acao'
-import { readFile } from 'acao/fs'
+import { voltaWhich } from 'acao/volta'
 
 export default defineConfig({
   jobs: {
