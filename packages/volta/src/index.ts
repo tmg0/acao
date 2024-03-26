@@ -4,14 +4,11 @@ import type { AcaoContext, RunOptions } from 'acao'
 
 export type VoltaRunCmd = string | ((prev: any, ctx: AcaoContext) => string | Promise<string>)
 
-export interface VoltaRunOptions extends RunOptions {
-  node: string
-  npm: string
-  yarn: string
-  pnpm: string
-}
+export type VoltaBinary = 'node' | 'npm' | 'yarn' | 'pnpm'
 
-type VoltaCommandType = 'run'
+export type VoltaRunOptions = RunOptions & Record<VoltaBinary, string>
+
+type VoltaCommandType = 'run' | 'which'
 
 const isString = (value: any): value is string => typeof value === 'string'
 
@@ -38,6 +35,17 @@ export function voltaRun(cmd: VoltaRunCmd, options: Partial<VoltaRunOptions> = {
         options.pnpm ? ['--pnpm', options.pnpm] : '',
         _cmd,
       ],
+      options,
+    )
+    return stdout
+  })
+}
+
+export function voltaWhich(binary: VoltaBinary = 'node', options: Partial<VoltaRunOptions> = {}) {
+  return defineRunner(async () => {
+    const { stdout } = await runVoltaCommand(
+      'which',
+      [binary],
       options,
     )
     return stdout
