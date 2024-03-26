@@ -152,6 +152,45 @@ export default defineConfig({
 })
 ```
 
+### `defineRunner`
+
+You can also wrap a custom step by using `defineRunner`
+
+**Example**
+
+```ts
+import { execa } from 'execa'
+
+const echoHello = defineRunner((prev, ctx) => {
+  execa('echo', ['Hello'])
+})
+```
+
+And `echoHello` can be used in jobs like:
+
+```ts
+// acao.config.ts
+import { defineConfig, run } from 'acao'
+
+export default defineConfig({
+  jobs: {
+    ci: {
+      steps: [
+        echoHello
+      ],
+    },
+  },
+})
+```
+
+### `Presets`
+
+For some common commands, `Acao` also provide some presets, such as `fs` and `volta`.
+
+- [fs](./pakcages/fs/README.md)
+
+- [volta](./pakcages/volta/README.md)
+
 ### `SSH`
 
 Configuring connections in jobs through the `ssh` field to execute commands remotely and retrieve outputs.
