@@ -23,4 +23,8 @@ export const main = defineCommand({
     run: import('./commands/run').then(r => r.default),
     preview: import('./commands/preview').then(r => r.default),
   },
+
+  run() {
+    console.log('setup main')
+  },
 })
