@@ -2,7 +2,7 @@ import { execaCommand } from 'execa'
 import { runMain as _runMain } from 'citty'
 import { destr } from 'destr'
 import { main } from './main'
-import type { AcaoJobStep, Options, RunCmd, RunOptions } from './core/types'
+import type { AcaoContext, AcaoJobStep, Options, RunCmd, RunOptions } from './core/types'
 import { isString } from './core/utils'
 
 export * from './core/types'
@@ -22,6 +22,10 @@ export function run(cmd: RunCmd, options: Partial<RunOptions> = {}) {
 
 export function defineRunner(setup: AcaoJobStep) {
   return setup
+}
+
+export function runRunner(runner: AcaoJobStep, ctx: Partial<AcaoContext> = {}) {
+  return runner(undefined, ctx as AcaoContext)
 }
 
 export function defineConfig(options: Partial<Options>) {

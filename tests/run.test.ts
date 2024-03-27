@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { execaCommand } from 'execa'
-import { run } from '../src'
+import { run, runRunner } from '../src'
 
 describe('run', () => {
   it('execa', async () => {
@@ -9,7 +9,7 @@ describe('run', () => {
   })
 
   it('basic', async () => {
-    const stdout = await run('echo 1')(undefined, {} as any)
+    const stdout = await runRunner(run('echo 1'))
     expect(Number(stdout)).toMatchInlineSnapshot(`1`)
   })
 })
