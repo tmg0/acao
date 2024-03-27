@@ -4,11 +4,11 @@ import { run } from '../src'
 describe('run', () => {
   it('basic', async () => {
     const stdout = await run('echo 1')(undefined, {} as any)
-    expect(Number(stdout)).toBe(1)
+    expect(Number(stdout)).toMatchInlineSnapshot(`1`)
   })
 
   it('transform', async () => {
     const stdout = await run('echo 1', { transform: stdout => Number(JSON.parse(stdout)) })(undefined, {} as any)
-    expect(stdout).toBe(1)
+    expect(stdout).toMatchInlineSnapshot(`1`)
   })
 })
