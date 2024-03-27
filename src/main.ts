@@ -1,6 +1,8 @@
 import { defineCommand } from 'citty'
+import { loadConfig } from 'c12'
 import { description, version } from '../package.json'
 import { checkUpdates } from './core/npm'
+import type { Options } from './core/types'
 
 export const main = defineCommand({
   meta: { name: 'acao', version, description },
@@ -25,6 +27,9 @@ export const main = defineCommand({
   },
 
   async run({ rawArgs }) {
-    console.log(rawArgs)
+    if (rawArgs.length)
+      return
+    const { config } = await loadConfig<Options>({ name: 'acao', rcFile: false })
+    return config
   },
 })
