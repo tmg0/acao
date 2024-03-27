@@ -1,7 +1,7 @@
 import { execaCommand } from 'execa'
 import { runMain as _runMain } from 'citty'
 import { destr } from 'destr'
-import { main } from './core/main'
+import { main } from './main'
 import type { AcaoContext, AcaoJobStep, Options, RunCmd, RunOptions } from './core/types'
 import { isString } from './core/utils'
 
