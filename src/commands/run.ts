@@ -1,3 +1,4 @@
+import process from 'node:process'
 import { defineCommand } from 'citty'
 import { loadConfig } from 'c12'
 import type { Options } from '../core/types'
@@ -15,7 +16,7 @@ export default defineCommand({
   },
 
   async run(ctx) {
-    const { config } = await loadConfig<Options>({ name: 'acao', rcFile: false })
+    const { config } = await loadConfig<Options>({ name: 'acao', rcFile: false, cwd: process.cwd() })
     await createAcao(config).runJobs(ctx.args._)
   },
 })
