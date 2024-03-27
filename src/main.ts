@@ -1,7 +1,9 @@
-import { defineCommand, runCommand } from 'citty'
+import { defineCommand } from 'citty'
+import { loadConfig } from 'c12'
 import { description, version } from '../package.json'
 import { checkUpdates } from './core/npm'
-import run from './commands/run'
+import { createAcao } from './core/context'
+import type { Options } from './core/types'
 
 export const main = defineCommand({
   meta: { name: 'acao', version, description },
@@ -25,8 +27,10 @@ export const main = defineCommand({
     preview: import('./commands/preview').then(r => r.default),
   },
 
-  run({ rawArgs }) {
-    if (!rawArgs.length)
-      runCommand(run, { rawArgs: [] })
+  async run({ rawArgs }) {
+    if (rawArgs.length)
+      return
+    const { config } = await loadConfig<Options>({ name: 'acao', rcFile: false })
+    await createAcao(config).runJobs()
   },
 })

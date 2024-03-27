@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { execaCommand } from 'execa'
-import { run, runRunner } from '../src'
+import { run, runRunner } from '../src/index'
 
 describe('run', () => {
   it('execa', async () => {
