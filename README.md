@@ -6,6 +6,10 @@
 
 🎬 Automate your software workflows with javascript. Make code review, unit test, and CI/CD works the way you want.
 
+```bash
+npx acao
+```
+
 ## Features
 
 🧲 Ordering based on the `needs` field for synchronous execution of jobs
@@ -17,6 +21,8 @@
 🎳 Support multiple types of config by [c12](https://github.com/unjs/c12)
 
 🎁 Friendly command-line helps by [citty](https://github.com/unjs/citty)
+
+✨ No installation required - `npx acao`
 
 ## Installation
 
@@ -35,9 +41,13 @@ pnpm add acao -D
 
 Run `acao` in terminal, typically at the same level as the `acao.config` file.
 
+### `acao`
+
+You can quick execute all your jobs with `acao`.
+
 ### `acao run <JOB>`
 
-You can execute jobs with 'acao run'.
+An alias for the `acao`
 
 ```bash
 acao run
