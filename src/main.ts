@@ -1,9 +1,6 @@
 import { defineCommand } from 'citty'
-import { loadConfig } from 'c12'
 import { description, version } from '../package.json'
 import { checkUpdates } from './core/npm'
-import { createAcao } from './core/context'
-import type { Options } from './core/types'
 
 export const main = defineCommand({
   meta: { name: 'acao', version, description },
