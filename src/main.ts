@@ -26,6 +26,6 @@ export const main = defineCommand({
   },
 
   run() {
-    console.log('setup main')
+    runCommand(run, { rawArgs: [] })
   },
 })
