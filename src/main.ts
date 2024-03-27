@@ -1,6 +1,7 @@
-import { defineCommand } from 'citty'
+import { defineCommand, runCommand } from 'citty'
 import { description, version } from '../package.json'
 import { checkUpdates } from './core/npm'
+import run from './commands/run'
 
 export const main = defineCommand({
   meta: { name: 'acao', version, description },

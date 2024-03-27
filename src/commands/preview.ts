@@ -4,7 +4,7 @@ import type { Options } from '../core/types'
 import { createAcao } from '../core/context'
 
 export default defineCommand({
-  meta: { name: 'preview' },
+  meta: { name: 'preview', description: 'Preview jobs' },
   async run() {
     const { config } = await loadConfig<Options>({ name: 'acao', rcFile: false })
     const ctx = createAcao(config)
