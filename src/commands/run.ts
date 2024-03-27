@@ -3,6 +3,11 @@ import { loadConfig } from 'c12'
 import type { Options } from '../core/types'
 import { createAcao } from '../core/context'
 
+export async function run(filters: string[] = []) {
+  const { config } = await loadConfig<Options>({ name: 'acao', rcFile: false })
+  await createAcao(config).runJobs(filters)
+}
+
 export default defineCommand({
   meta: { name: 'run', description: 'Run jobs' },
 
@@ -15,7 +20,6 @@ export default defineCommand({
   },
 
   async run(ctx) {
-    const { config } = await loadConfig<Options>({ name: 'acao', rcFile: false })
-    await createAcao(config).runJobs(ctx.args._)
+    run(ctx.args._)
   },
 })
