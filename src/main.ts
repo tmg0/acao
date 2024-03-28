@@ -1,9 +1,7 @@
-import { defineCommand, runCommand } from 'citty'
+import { defineCommand } from 'citty'
 import { description, version } from '../package.json'
 import { checkUpdates } from './core/npm'
 import type { Options } from './core/types'
-import run from './commands/run'
-import preview from './commands/preview'
 
 export interface Global {
   value?: Options | null
@@ -27,16 +25,18 @@ export const main = defineCommand({
 
   async setup({ args }) {
     if (!runtimeConfig.value)
-      runtimeConfig.value = {} as any
+      runtimeConfig.value = { jobs: {} } as any
 
     if (!args.noUpdateNotifier)
       await checkUpdates()
   },
 
-  subCommands: { run, preview },
+  subCommands: {
+    run: import('./commands/run').then(r => r.default),
+    preview: import('./commands/preview').then(r => r.default),
+  },
 
   run({ rawArgs }) {
-    if (!rawArgs.length)
-      runCommand(run, { rawArgs: [] })
+    console.log(rawArgs)
   },
 })
