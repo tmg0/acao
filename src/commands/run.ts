@@ -1,6 +1,6 @@
 import { defineCommand } from 'citty'
 import { createAcao } from '../core/context'
-import { runtimeConfig } from '../main'
+import { loadAcaoConfig } from '../core/config'
 
 export default defineCommand({
   meta: { name: 'run', description: 'Run jobs' },
@@ -14,6 +14,6 @@ export default defineCommand({
   },
 
   async run(ctx) {
-    await createAcao(runtimeConfig.value).runJobs(ctx.args._)
+    await createAcao(await loadAcaoConfig()).runJobs(ctx.args._)
   },
 })
