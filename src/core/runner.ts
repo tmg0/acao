@@ -7,7 +7,7 @@ export function defineRunner(setup: AcaoJobStep) {
   return setup
 }
 
-export function runRunner(runner: AcaoJobStep) {
+export function execRunner(runner: AcaoJobStep) {
   return runner(undefined, {} as any)
 }
 

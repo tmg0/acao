@@ -2,7 +2,7 @@ import { defu } from 'defu'
 import type { Options, SSHOptions } from './types'
 
 export function resolveOptions(rawOptions: Partial<Options> | undefined | null = {}) {
-  return defu(rawOptions, {}) as Options
+  return defu(rawOptions, { jobs: {} }) as Options
 }
 
 export function resolveSSHOptions(rawOptions: Partial<SSHOptions> = {}) {
