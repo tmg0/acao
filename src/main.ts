@@ -1,4 +1,5 @@
 import { defineCommand, runCommand } from 'citty'
+import { loadConfig } from 'c12'
 import { description, version } from '../package.json'
 import { checkUpdates } from './core/npm'
 import type { Options } from './core/types'
@@ -24,8 +25,10 @@ export const main = defineCommand({
   },
 
   async setup({ args }) {
-    if (!runtimeConfig.value)
-      runtimeConfig.value = { jobs: {} } as any
+    if (!runtimeConfig.value) {
+      const { config } = await loadConfig<Options>({ name: 'acao', rcFile: false, defaultConfig: { jobs: {} } as any })
+      runtimeConfig.value = config
+    }
 
     if (!args.noUpdateNotifier)
       await checkUpdates()
