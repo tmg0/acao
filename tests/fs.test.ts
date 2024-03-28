@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { readFile } from '../src'
+import { readFile } from '../packages/fs/src'
 
 describe('fs', () => {
   it('read file', async () => {
