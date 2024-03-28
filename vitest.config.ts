@@ -4,7 +4,9 @@ import { defineConfig } from 'vitest/config'
 export default defineConfig({
   test: {
     alias: {
-      acao: resolve(__dirname, 'src/index.ts'),
+      'acao': resolve(__dirname, 'src/index.ts'),
+      '@core/runner': resolve(__dirname, 'src/core/runner.ts'),
+      '@core/types': resolve(__dirname, 'src/core/types.ts'),
     },
   },
 })

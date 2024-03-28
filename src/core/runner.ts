@@ -7,6 +7,10 @@ export function defineRunner(setup: AcaoJobStep) {
   return setup
 }
 
+export function runRunner(runner: AcaoJobStep) {
+  return runner(undefined, {} as any)
+}
+
 export function run(cmd: RunCmd, options: Partial<RunOptions> = {}) {
   return defineRunner(async (prev: any, ctx: AcaoContext) => {
     const _cmd = isString(cmd) ? cmd : await cmd(prev, ctx)
