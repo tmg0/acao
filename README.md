@@ -285,6 +285,30 @@ export default defineConfig({
 
 It will be used to extend the configuration, and the final config is merged result of extended options and user options with [defu](https://github.com/unjs/defu).
 
+**Example**
+
+```ts
+// acao.config.base.ts
+import { defineConfig, run } from 'acao'
+
+export default defineConfig({
+  jobs: {
+    ci: {
+      steps: [
+        run('echo Acao'),
+      ],
+    },
+  },
+})
+```
+
+```ts
+// acao.config.ts
+export default defineConfig({
+  extends: ['./acao.config.base']
+})
+```
+
 ### `options.jobs`
 
 - Type: `Record<string, Job>`
