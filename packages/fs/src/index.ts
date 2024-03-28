@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises'
-import { defineRunner } from 'acao'
-import type { AcaoContext, RunOptions } from 'acao'
+import { defineRunner } from '@core/runner'
+import type { AcaoContext, RunOptions } from '@core/types'
 
 export interface ReadFileOptions extends RunOptions {}
 

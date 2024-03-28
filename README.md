@@ -278,6 +278,13 @@ export default defineConfig({
 
 ## Options
 
+### `options.extends`
+
+- Type: `string | string[]`
+- Default: `undefined`
+
+It will be used to extend the configuration, and the final config is merged result of extended options and user options with [defu](https://github.com/unjs/defu).
+
 ### `options.jobs`
 
 - Type: `Record<string, Job>`
