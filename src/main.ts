@@ -1,13 +1,13 @@
-import { defineCommand } from 'citty'
+import { defineCommand, runCommand } from 'citty'
 import { description, version } from '../package.json'
 import { checkUpdates } from './core/npm'
 import type { Options } from './core/types'
 
-export interface Global {
+export interface RuntimeConfig {
   value?: Options | null
 }
 
-export const runtimeConfig: Global = {
+export const runtimeConfig: RuntimeConfig = {
   value: undefined,
 }
 
@@ -36,7 +36,10 @@ export const main = defineCommand({
     preview: import('./commands/preview').then(r => r.default),
   },
 
-  run({ rawArgs }) {
-    console.log(rawArgs)
+  async run({ rawArgs }) {
+    if (rawArgs.length)
+      return
+    const run = await import('./commands/run').then(r => r.default)
+    runCommand(run, { rawArgs: [] })
   },
 })
