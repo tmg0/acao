@@ -38,7 +38,7 @@ importers:
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^2.9.0
-        version: 2.11.5(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.3)(vitest@1.4.0)
+        version: 2.11.6(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.3)(vitest@1.4.0)
       '@types/node':
         specifier: ^20.11.30
         version: 20.12.2
@@ -87,8 +87,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /@antfu/eslint-config@2.11.5(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.3)(vitest@1.4.0):
-    resolution: {integrity: sha512-Aixz/pYx4egbCgHjOMgJJHL2HITgvscrq5DowTLd3B5V4cRQaKcpa6eRlT/zhlF72LPxBa65DqnRCTV5IiNAJw==}
+  /@antfu/eslint-config@2.11.6(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.3)(vitest@1.4.0):
+    resolution: {integrity: sha512-v8f1uskX9w3c7IwvQu1pw02d19qc0o//LjILVlzv3B81bsO22x4hJkwQdJEhvypR3Z82vhCnCXfa6yoMddW1pg==}
     hasBin: true
     peerDependencies:
       '@unocss/eslint-plugin': '>=0.50.0'
@@ -1776,7 +1776,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001600
-      electron-to-chromium: 1.4.721
+      electron-to-chromium: 1.4.722
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.23.0)
     dev: true
@@ -2104,8 +2104,8 @@ packages:
   /eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  /electron-to-chromium@1.4.721:
-    resolution: {integrity: sha512-k1x2r6foI8iJOp+1qTxbbrrWMsOiHkzGBYwYigaq+apO1FSqtn44KTo3Sy69qt7CRr7149zTcsDvH7MUKsOuIQ==}
+  /electron-to-chromium@1.4.722:
+    resolution: {integrity: sha512-5nLE0TWFFpZ80Crhtp4pIp8LXCztjYX41yUcV6b+bKR2PqzjskTMOOlBi1VjBHlvHwS+4gar7kNKOrsbsewEZQ==}
     dev: true
 
   /emoji-regex@8.0.0:
