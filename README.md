@@ -195,9 +195,9 @@ export default defineConfig({
 
 ### `Presets`
 
-For some common commands, `Acao` also provide some presets, such as `fs` and `volta`.
+For some common commands, `Acao` also provide some presets, such as `fs` `git` `volta`.
 
-See [`fs`](./packages/fs/README.md) / [`volta`](./packages/volta/README.md)
+See [`fs`](./packages/fs/README.md) / [`git`](./packages/git/README.md) / [`volta`](./packages/volta/README.md)
 
 ### `SSH`
 

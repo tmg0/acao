@@ -30,6 +30,11 @@
       "import": "./dist/fs.js",
       "require": "./dist/fs.cjs"
     },
+    "./git": {
+      "types": "./dist/git.d.ts",
+      "import": "./dist/git.js",
+      "require": "./dist/git.cjs"
+    },
     "./volta": {
       "types": "./dist/volta.d.ts",
       "import": "./dist/volta.js",
