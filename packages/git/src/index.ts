@@ -25,11 +25,12 @@ function runGitCommand(command: GitCommandType, args: ((string | number) | (stri
 
 export function gitLog(options: Partial<GitLogOptions> = {}) {
   return defineRunner(async () => {
+    const pretty = options.format ? `format:"${options.format}"` : options.pretty
     const { stdout } = await runGitCommand(
       'log',
       [
         `-${options.number ?? 1}`,
-        options.pretty ? `--pretty=${options.pretty}` : `--pretty=format:"${options.format}"`,
+        pretty ? `--pretty=${pretty}` : '',
       ],
       options,
     )
