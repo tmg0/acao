@@ -5,7 +5,6 @@ import { destr } from 'destr'
 
 export interface GitLogOptions extends RunOptions {
   number: number
-  oneline: boolean
   pretty: 'oneline' | 'reference' | undefined
   format: string
 }

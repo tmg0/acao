@@ -24,6 +24,23 @@ export default defineConfig({
 })
 ```
 
+`options.number`
+
+- Type: `number`
+- Default: `0`
+
+`options.pretty`
+
+- Type: `'oneline' | 'reference'`
+- Default: `undefined`
+
+`options.format`
+
+The target string will be passed to `--pretty:format=` if this option be declared.
+
+- Type: `string`
+- Default: `undefined`
+
 ## License
 
 [MIT](./LICENSE) License © 2024-PRESENT [Tamago](https://github.com/tmg0)
