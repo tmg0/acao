@@ -1,6 +1,7 @@
 import { execa } from 'execa'
 import { defineRunner } from 'acao'
 import type { AcaoContext, RunOptions } from 'acao'
+import { destr } from 'destr'
 
 export type VoltaRunCmd = string | ((prev: any, ctx: AcaoContext) => string | Promise<string>)
 
@@ -37,7 +38,9 @@ export function voltaRun(cmd: VoltaRunCmd, options: Partial<VoltaRunOptions> = {
       ],
       options,
     )
-    return stdout
+    if (!options.transform)
+      return destr(stdout)
+    return options.transform(stdout)
   })
 }
 
@@ -48,6 +51,8 @@ export function voltaWhich(binary: VoltaBinary = 'node', options: Partial<VoltaR
       [binary],
       options,
     )
-    return stdout
+    if (!options.transform)
+      return destr(stdout)
+    return options.transform(stdout)
   })
 }
