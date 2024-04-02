@@ -204,7 +204,7 @@ For common commands, `Acao` also provide some presets
 - [`sed`](./packages/sed/README.md)
 - [`volta`](./packages/volta/README.md)
 
-Considering about removing the `fs` module from the presets in next version and recommend using `defineRunner` to wrap operations.
+Considering about removing the `fs` module from the presets in next version and recommend using `defineRunner` instead.
 
 ### `SSH`
 
