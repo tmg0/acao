@@ -24,8 +24,8 @@ export const main = defineCommand({
     preview: import('./commands/preview').then(r => r.default),
   },
 
-  async run({ rawArgs }) {
-    if (rawArgs.length)
+  async run(ctx) {
+    if (ctx.args._.length)
       return
     const run = await import('./commands/run').then(r => r.default)
     runCommand(run, { rawArgs: [] })
