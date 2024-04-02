@@ -199,6 +199,7 @@ For common commands, `Acao` also provide some presets
 
 - [`fs`](./packages/fs/README.md)
 - [`git`](./packages/git/README.md)
+- [`sed`](./packages/sed/README.md)
 - [`volta`](./packages/volta/README.md)
 
 ### `SSH`
