@@ -1,4 +1,4 @@
-import { execa, execaCommand } from 'execa'
+import { execaCommand } from 'execa'
 import { destr } from 'destr'
 import { defu } from 'defu'
 import { defineRunner } from '@core/runner'
