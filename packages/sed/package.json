@@ -1,0 +1,7 @@
+{
+  "name": "@acao/sed",
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup"
+  }
+}

@@ -197,9 +197,14 @@ export default defineConfig({
 
 For common commands, `Acao` also provide some presets
 
-- [`fs`](./packages/fs/README.md)
+🚧 More presets are coming soon!
+
+- [~~`fs`~~](./packages/fs/README.md)
 - [`git`](./packages/git/README.md)
+- [`sed`](./packages/sed/README.md)
 - [`volta`](./packages/volta/README.md)
+
+Considering about removing the `fs` module from the presets in next version and recommend using `defineRunner` to wrap operations.
 
 ### `SSH`
 

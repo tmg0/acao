@@ -35,6 +35,11 @@
       "import": "./dist/git.js",
       "require": "./dist/git.cjs"
     },
+    "./sed": {
+      "types": "./dist/sed.d.ts",
+      "import": "./dist/sed.js",
+      "require": "./dist/sed.cjs"
+    },
     "./volta": {
       "types": "./dist/volta.d.ts",
       "import": "./dist/volta.js",
