@@ -199,6 +199,7 @@ For common commands, `Acao` also provide some presets
 
 🚧 More presets are coming soon!
 
+- [`docker`](./packages/docker/README.md)
 - [~~`fs`~~](./packages/fs/README.md)
 - [`git`](./packages/git/README.md)
 - [`sed`](./packages/sed/README.md)

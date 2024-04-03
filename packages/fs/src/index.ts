@@ -1,12 +1,11 @@
 import fs from 'node:fs/promises'
 import { defineRunner } from '@core/runner'
 import type { AcaoContext, RunOptions } from '@core/types'
+import { isString } from '@core/utils'
 
 export interface ReadFileOptions extends RunOptions {}
 
 export type ReadFilePath = string | ((prev: any, ctx: AcaoContext) => string | Promise<string>)
-
-const isString = (value: any): value is string => typeof value === 'string'
 
 export function readFile(path: ReadFilePath, options: Partial<ReadFileOptions> = {}) {
   return defineRunner(async (prev: any, ctx: AcaoContext) => {

@@ -21,7 +21,7 @@ export interface Options {
   jobs: Record<string, AcaoJob>
 }
 
-export type RunCmd = string | ((prev: any, ctx: AcaoContext) => string | Promise<string>)
+export type RunCmd<T = string> = T | ((prev: any, ctx: AcaoContext) => T | Promise<T>)
 
 export interface RunOptions extends ExecaOptions {
   ssh: boolean

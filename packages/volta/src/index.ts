@@ -2,6 +2,7 @@ import { execa } from 'execa'
 import { defineRunner } from 'acao'
 import type { AcaoContext, RunOptions } from 'acao'
 import { destr } from 'destr'
+import { isString } from '@core/utils'
 
 export type VoltaRunCmd = string | ((prev: any, ctx: AcaoContext) => string | Promise<string>)
 
@@ -10,8 +11,6 @@ export type VoltaBinary = 'node' | 'npm' | 'yarn' | 'pnpm'
 export type VoltaRunOptions = RunOptions & Record<VoltaBinary, string>
 
 type VoltaCommandType = 'run' | 'which'
-
-const isString = (value: any): value is string => typeof value === 'string'
 
 function runVoltaCommand(command: VoltaCommandType, args: (string | string[])[] | [], options: Partial<VoltaRunOptions> = {}) {
   return execa(
