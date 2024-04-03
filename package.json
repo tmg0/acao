@@ -25,6 +25,11 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./docker": {
+      "types": "./dist/docker.d.ts",
+      "import": "./dist/docker.js",
+      "require": "./dist/docker.cjs"
+    },
     "./fs": {
       "types": "./dist/fs.d.ts",
       "import": "./dist/fs.js",
