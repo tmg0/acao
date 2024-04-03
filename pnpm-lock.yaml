@@ -76,6 +76,8 @@ importers:
         specifier: ^1.4.0
         version: 1.4.0(@types/node@20.12.3)
 
+  packages/docker: {}
+
   packages/fs: {}
 
   packages/git: {}
