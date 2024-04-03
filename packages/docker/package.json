@@ -1,0 +1,7 @@
+{
+  "name": "@acao/docker",
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup"
+  }
+}
