@@ -1,7 +1,9 @@
 import { defineRunner } from '@core/runner'
-import type { AcaoContext, RunOptions } from '@core/types'
+import type { AcaoContext, RunCmd, RunOptions } from '@core/types'
 import { execaCommand } from 'execa'
 import { destr } from 'destr'
+import {defu} from 'defu'
+import { isString } from '@core/utils'
 
 export interface DockerBuildOptions extends RunOptions {
   file: string
@@ -16,7 +18,13 @@ export interface DockerLoginOptions extends Partial<RunOptions> {
   password: string
 }
 
-type DockerCommandType = 'build' | 'buildx' | 'login' | 'push'
+export interface DockerRunOptions extends RunOptions {
+  shell: string
+  rm: boolean
+  volume: Record<string, string>
+}
+
+type DockerCommandType = 'build' | 'buildx' | 'login' | 'push' | 'run'
 
 function getDockerCommand(command: DockerCommandType, args: ((string | number) | (string | number)[])[] | []) {
   return [
@@ -74,6 +82,26 @@ export function dockerPush(image: string, options: Partial<RunOptions>) {
   return defineRunner(async (_, ctx) => {
     const cmd = getDockerCommand('push', [image])
     const { stdout } = await runDockerCommand(cmd, options, ctx)
+
+    if (!options.transform)
+      return destr(stdout)
+    return options.transform(stdout)
+  })
+}
+
+export function dockerRun(image: string, cmd: RunCmd, rawOptions: Partial<DockerRunOptions> = {}) {
+  const options = defu(rawOptions, { shell: 'bin/sh', rm: true, volume: {} }) as DockerRunOptions
+
+  return defineRunner(async (prev, ctx) => {
+    const _cmd = isString(cmd) ? cmd : await cmd(prev, ctx)
+    const _volume = Object.entries(options.volume).map(item => ['-v', item.join(':')])
+    const { stdout } = await runDockerCommand(getDockerCommand('run', [
+      _volume.length ? _volume.flat() : [],
+      options.rm ? '-rm' : '',
+      image,
+      options.shell ?? '',
+      _cmd
+    ]), options, ctx)
 
     if (!options.transform)
       return destr(stdout)
