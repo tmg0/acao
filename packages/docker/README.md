@@ -58,6 +58,24 @@ export default defineConfig({
 })
 ```
 
+### `dockerRun`
+
+```ts
+// acao.config.ts
+import { defineConfig, run } from 'acao'
+import { dockerRun } from 'acao/docker'
+
+export default defineConfig({
+  jobs: {
+    ci: {
+      steps: [
+        dockerRun('node:18', 'npm install && npm run build', { volume: { dist: '~/dist' } }),
+      ],
+    },
+  },
+})
+```
+
 ## License
 
 [MIT](./LICENSE) License © 2024-PRESENT [Tamago](https://github.com/tmg0)

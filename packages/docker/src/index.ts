@@ -90,7 +90,7 @@ export function dockerPush(image: string, options: Partial<RunOptions>) {
 }
 
 export function dockerRun(image: string, cmd: RunCmd, rawOptions: Partial<DockerRunOptions> = {}) {
-  const options = defu(rawOptions, { shell: 'bin/sh', rm: true, volume: {} }) as DockerRunOptions
+  const options = defu(rawOptions, { shell: 'bin/sh', rm: true, volume: { '.': '~' } }) as DockerRunOptions
 
   return defineRunner(async (prev, ctx) => {
     const _cmd = isString(cmd) ? cmd : await cmd(prev, ctx)
