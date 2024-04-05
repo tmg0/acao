@@ -2,7 +2,7 @@ import { defineRunner } from '@core/runner'
 import type { AcaoContext, RunCmd, RunOptions } from '@core/types'
 import { execaCommand } from 'execa'
 import { destr } from 'destr'
-import {defu} from 'defu'
+import { defu } from 'defu'
 import { isString } from '@core/utils'
 
 export interface DockerBuildOptions extends RunOptions {
@@ -100,7 +100,7 @@ export function dockerRun(image: string, cmd: RunCmd, rawOptions: Partial<Docker
       options.rm ? '-rm' : '',
       image,
       options.shell ?? '',
-      _cmd
+      _cmd,
     ]), options, ctx)
 
     if (!options.transform)
