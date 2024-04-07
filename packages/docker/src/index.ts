@@ -81,9 +81,10 @@ export function dockerLogin(host: string, options: DockerLoginOptions) {
   })
 }
 
-export function dockerPush(image: string, options: Partial<RunOptions>) {
-  return defineRunner(async (_, ctx) => {
-    const cmd = getDockerCommand('push', [image])
+export function dockerPush(image: RunCmd, options: Partial<RunOptions> = {}) {
+  return defineRunner(async (prev, ctx) => {
+    const _image = isString(image) ? image : await image(prev, ctx)
+    const cmd = getDockerCommand('push', [_image])
     const { stdout } = await runDockerCommand(cmd, options, ctx)
 
     if (!options.transform)
