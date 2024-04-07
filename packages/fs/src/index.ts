@@ -11,7 +11,7 @@ export function readFile(path: ReadFilePath, options: Partial<ReadFileOptions> =
   return defineRunner(async (prev: any, ctx: AcaoContext) => {
     const _path = isString(path) ? path : await path(prev, ctx)
     let stdout = ''
-    const ssh = options.ssh && ctx.ssh
+    const ssh = options.ssh !== false && ctx.ssh
     if (!ssh)
       stdout = await fs.readFile(_path, { encoding: 'utf-8' })
     if (ssh)
