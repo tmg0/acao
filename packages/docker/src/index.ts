@@ -36,7 +36,7 @@ function getDockerCommand(command: DockerCommandType, args: ((string | number) |
 
 function runDockerCommand(cmd: string[], options: Partial<RunOptions>, ctx: AcaoContext) {
   const _cmd = cmd.join(' ')
-  const ssh = options.ssh && ctx.ssh
+  const ssh = options.ssh !== false && ctx.ssh
   return ssh ? ssh.execCommand(_cmd, options) : execaCommand(_cmd, options)
 }
 
@@ -85,7 +85,7 @@ export function dockerPush(image: RunCmd, options: Partial<RunOptions> = {}) {
   return defineRunner(async (prev, ctx) => {
     const _image = isString(image) ? image : await image(prev, ctx)
     const cmd = getDockerCommand('push', [_image])
-    const { stdout } = await runDockerCommand(cmd, options, ctx)
+    const { stdout } = await runDockerCommand(cmd, { shell: true, ...options }, ctx)
 
     if (!options.transform)
       return destr(stdout)

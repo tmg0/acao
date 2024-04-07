@@ -37,8 +37,8 @@ export function sedSubstitute(filename: string, rawOptions: Partial<SedSubstitut
   ].flat().filter(Boolean).join(' ')
 
   return defineRunner(async (_, ctx) => {
-    const ssh = options.ssh && ctx.ssh
-    const { stdout } = ssh ? await ctx.ssh?.execCommand(cmd, options) : await execaCommand(cmd, options)
+    const ssh = options.ssh !== false && ctx.ssh
+    const { stdout } = ssh ? await ssh?.execCommand(cmd, options) : await execaCommand(cmd, options)
 
     if (!options.transform)
       return destr(stdout)
