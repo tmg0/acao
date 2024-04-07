@@ -28,6 +28,7 @@ type DockerCommandType = 'build' | 'buildx' | 'login' | 'push' | 'run'
 
 function getDockerCommand(command: DockerCommandType, args: ((string | number) | (string | number)[])[] | []) {
   return [
+    'docker',
     command,
     ...args.flat(),
   ].filter(Boolean).map(String)
