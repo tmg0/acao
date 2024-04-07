@@ -3,7 +3,7 @@ import type { AcaoContext, RunCmd, RunOptions } from '@core/types'
 import { execaCommand } from 'execa'
 import { destr } from 'destr'
 import { defu } from 'defu'
-import { isString } from '@core/utils'
+import { isFunction, isString } from '@core/utils'
 
 export interface DockerBuildOptions extends RunOptions {
   file: string
@@ -39,24 +39,26 @@ function runDockerCommand(cmd: string[], options: Partial<RunOptions>, ctx: Acao
   return ssh ? ssh.execCommand(_cmd, options) : execaCommand(_cmd, options)
 }
 
-export function dockerBuild(options: Partial<DockerBuildOptions>) {
-  return defineRunner(async (_, ctx) => {
+export function dockerBuild(options: RunCmd<Partial<DockerBuildOptions>>) {
+  return defineRunner(async (prev, ctx) => {
+    const _options = isFunction(options) ? await options(prev, ctx) : options
+
     const cmd = getDockerCommand('build', [
-      options.file ? ['-f', options.file] : '',
-      options.tag ? ['-t', options.tag] : '',
-      options.platform ? ['--platform', options.platform] : '',
-      options.noCache ? '--no-cache' : '',
-      options.path || '.',
+      _options.file ? ['-f', _options.file] : '',
+      _options.tag ? ['-t', _options.tag] : '',
+      _options.platform ? ['--platform', _options.platform] : '',
+      _options.noCache ? '--no-cache' : '',
+      _options.path || '.',
     ])
 
-    if (options.platform)
+    if (_options.platform)
       cmd.unshift('buildx')
 
-    const { stdout } = await runDockerCommand(cmd, options, ctx)
+    const { stdout } = await runDockerCommand(cmd, _options, ctx)
 
-    if (!options.transform)
+    if (!_options.transform)
       return destr(stdout)
-    return options.transform(stdout)
+    return _options.transform(stdout)
   })
 }
 
