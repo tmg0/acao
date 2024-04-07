@@ -1,6 +1,6 @@
-import { execa } from 'execa'
-import { defineRunner } from 'acao'
-import type { AcaoContext, RunOptions } from 'acao'
+import { execaCommand } from 'execa'
+import { defineRunner } from '@core/runner'
+import type { AcaoContext, RunOptions } from '@core/types'
 import { destr } from 'destr'
 import { isString } from '@core/utils'
 
@@ -13,14 +13,7 @@ export type VoltaRunOptions = RunOptions & Record<VoltaBinary, string>
 type VoltaCommandType = 'run' | 'which'
 
 function runVoltaCommand(command: VoltaCommandType, args: (string | string[])[] | [], options: Partial<VoltaRunOptions> = {}) {
-  return execa(
-    'volta',
-    [
-      command,
-      ...args.flat(),
-    ].filter(Boolean),
-    options,
-  )
+  return execaCommand(['volta', command, ...args.flat()].filter(Boolean).join(' '), options)
 }
 
 export function voltaRun(cmd: VoltaRunCmd, options: Partial<VoltaRunOptions> = {}) {
@@ -29,10 +22,10 @@ export function voltaRun(cmd: VoltaRunCmd, options: Partial<VoltaRunOptions> = {
     const { stdout } = await runVoltaCommand(
       'run',
       [
-        options.node ? ['--node', options.node] : '',
-        options.npm ? ['--npm', options.npm] : '',
-        options.yarn ? ['--yarn', options.yarn] : '',
-        options.pnpm ? ['--pnpm', options.pnpm] : '',
+        options.node ? `--node=${options.node}` : '',
+        options.npm ? `--npm=${options.npm}` : '',
+        options.yarn ? `--yarn=${options.yarn}` : '',
+        options.pnpm ? `--pnpm=${options.pnpm}` : '',
         _cmd,
       ],
       options,
