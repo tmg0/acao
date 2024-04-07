@@ -53,7 +53,7 @@ export function dockerBuild(options: RunCmd<Partial<DockerBuildOptions>>) {
     ])
 
     if (_options.platform)
-      cmd.unshift('buildx')
+      cmd.splice(1, 0, 'buildx')
 
     const { stdout } = await runDockerCommand(cmd, _options, ctx)
 
