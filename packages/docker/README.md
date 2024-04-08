@@ -76,6 +76,24 @@ export default defineConfig({
 })
 ```
 
+### `dockerRmi`
+
+```ts
+// acao.config.ts
+import { defineConfig, run } from 'acao'
+import { dockerRmi } from 'acao/docker'
+
+export default defineConfig({
+  jobs: {
+    ci: {
+      steps: [
+        dockerRmi(['node:18', 'node:20']),
+      ],
+    },
+  },
+})
+```
+
 ## License
 
 [MIT](./LICENSE) License © 2024-PRESENT [Tamago](https://github.com/tmg0)

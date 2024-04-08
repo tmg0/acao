@@ -23,7 +23,11 @@ export interface DockerRunOptions extends RunOptions {
   volume: Record<string, string>
 }
 
-type DockerCommandType = 'build' | 'buildx' | 'login' | 'push' | 'run'
+export interface DockerRmiOptions extends RunOptions {
+  force: boolean
+}
+
+type DockerCommandType = 'build' | 'buildx' | 'login' | 'push' | 'run' | 'rmi'
 
 function getDockerCommand(command: DockerCommandType, args: ((string | number) | (string | number)[])[] | []) {
   return [
@@ -96,6 +100,17 @@ export function dockerRun(image: string, cmd: RunCmd, rawOptions: Partial<Docker
       image,
       options.shell ?? '',
       _cmd,
+    ]), options, ctx)
+    return transformStdout(stdout, options.transform)
+  })
+}
+
+export function dockerRmi(image: RunCmd<string | string[]>, options: Partial<DockerRmiOptions> = {}) {
+  return defineRunner(async (prev, ctx) => {
+    const _image = isFunction(image) ? await image(prev, ctx) : image
+    const { stdout } = await runDockerCommand(getDockerCommand('rmi', [
+      options.force ? '-f' : '',
+      [_image].flat(),
     ]), options, ctx)
     return transformStdout(stdout, options.transform)
   })
