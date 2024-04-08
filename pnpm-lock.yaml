@@ -78,8 +78,6 @@ importers:
 
   packages/docker: {}
 
-  packages/fs: {}
-
   packages/git: {}
 
   packages/sed: {}

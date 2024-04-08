@@ -329,7 +329,7 @@ export default defineConfig({
 - Type: `() => Promise<any>`
 - Default: `undefined`
 
-### `options.jobs.<key>.ssh`
+### `options.jobs.<KEY>.ssh`
 
 - Type: `SSH`
 - Default: `undefined`
@@ -343,32 +343,32 @@ interface SSH {
 }
 ```
 
-### `options.jobs.<key>.beforeConnectSSH`
+### `options.jobs.<KEY>.beforeConnectSSH`
 
 - Type: `() => Promise<any>`
 - Default: `undefined`
 
-### `options.jobs.<key>.afterConnectSSH`
+### `options.jobs.<KEY>.afterConnectSSH`
 
 - Type: `() => Promise<any>`
 - Default: `undefined`
 
-### `options.jobs.<key>.beforeExec`
+### `options.jobs.<KEY>.beforeExec`
 
 - Type: `() => Promise<any>`
 - Default: `undefined`
 
-### `options.jobs.<key>.afterExec`
+### `options.jobs.<KEY>.afterExec`
 
 - Type: `() => Promise<any>`
 - Default: `undefined`
 
-### `options.jobs.<key>.afterCloseSSH`
+### `options.jobs.<KEY>.afterCloseSSH`
 
 - Type: `() => Promise<any>`
 - Default: `undefined`
 
-### `options.jobs.<key>.steps`
+### `options.jobs.<KEY>.steps`
 
 - Type: `(() => Promise<string>)[]`
 - Default: `[]`
