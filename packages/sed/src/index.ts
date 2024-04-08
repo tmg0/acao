@@ -1,8 +1,8 @@
 import { execaCommand } from 'execa'
-import { destr } from 'destr'
 import { defu } from 'defu'
 import { defineRunner } from '@core/runner'
 import type { RunOptions } from '@core/types'
+import { transformStdout } from '@core/utils'
 
 export interface SubstituteValue {
   find: string
@@ -39,9 +39,6 @@ export function sedSubstitute(filename: string, rawOptions: Partial<SedSubstitut
   return defineRunner(async (_, ctx) => {
     const ssh = options.ssh !== false && ctx.ssh
     const { stdout } = ssh ? await ssh?.execCommand(cmd, options) : await execaCommand(cmd, options)
-
-    if (!options.transform)
-      return destr(stdout)
-    return options.transform(stdout)
+    return transformStdout(stdout, options.transform)
   })
 }

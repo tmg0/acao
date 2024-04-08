@@ -1,7 +1,7 @@
 import { defineRunner } from '@core/runner'
 import type { RunOptions } from '@core/types'
 import { execa } from 'execa'
-import { destr } from 'destr'
+import { transformStdout } from '@core/utils'
 
 export interface GitLogOptions extends RunOptions {
   number: number
@@ -34,8 +34,6 @@ export function gitLog(options: Partial<GitLogOptions> = {}) {
       options,
     )
 
-    if (!options.transform)
-      return destr(stdout)
-    return options.transform(stdout)
+    return transformStdout(stdout, options.transform)
   })
 }

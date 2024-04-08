@@ -1,9 +1,8 @@
 import { defineRunner } from '@core/runner'
 import type { AcaoContext, RunCmd, RunOptions } from '@core/types'
 import { execaCommand } from 'execa'
-import { destr } from 'destr'
 import { defu } from 'defu'
-import { isFunction, isString } from '@core/utils'
+import { isFunction, isString, transformStdout } from '@core/utils'
 
 export interface DockerBuildOptions extends RunOptions {
   file: string
@@ -56,10 +55,7 @@ export function dockerBuild(options: RunCmd<Partial<DockerBuildOptions>>) {
       cmd.splice(1, 0, 'buildx')
 
     const { stdout } = await runDockerCommand(cmd, _options, ctx)
-
-    if (!_options.transform)
-      return destr(stdout)
-    return _options.transform(stdout)
+    return transformStdout(stdout, _options.transform)
   })
 }
 
@@ -75,9 +71,7 @@ export function dockerLogin(host: string, options: DockerLoginOptions) {
 
     const { stdout } = await runDockerCommand(cmd, options, ctx)
 
-    if (!options.transform)
-      return destr(stdout)
-    return options.transform(stdout)
+    return transformStdout(stdout, options.transform)
   })
 }
 
@@ -86,10 +80,7 @@ export function dockerPush(image: RunCmd, options: Partial<RunOptions> = {}) {
     const _image = isString(image) ? image : await image(prev, ctx)
     const cmd = getDockerCommand('push', [_image])
     const { stdout } = await runDockerCommand(cmd, { shell: true, ...options }, ctx)
-
-    if (!options.transform)
-      return destr(stdout)
-    return options.transform(stdout)
+    return transformStdout(stdout, options.transform)
   })
 }
 
@@ -106,9 +97,6 @@ export function dockerRun(image: string, cmd: RunCmd, rawOptions: Partial<Docker
       options.shell ?? '',
       _cmd,
     ]), options, ctx)
-
-    if (!options.transform)
-      return destr(stdout)
-    return options.transform(stdout)
+    return transformStdout(stdout, options.transform)
   })
 }
