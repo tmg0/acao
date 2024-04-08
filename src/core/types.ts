@@ -14,11 +14,18 @@ export interface AcaoJob {
   ssh?: SSHOptions
   needs?: string | string[]
   steps: AcaoJobStep[]
+  beforeConnectSSH?: () => any | Promise<any>
+  afterConnectSSH?: () => any | Promise<any>
+  beforeExec?: () => any | Promise<any>
+  afterExec?: () => any | Promise<any>
+  afterCloseSSH?: () => any | Promise<any>
 }
 
 export interface Options {
   extends: string | string[]
   jobs: Record<string, AcaoJob>
+  setup?: () => any | Promise<any>
+  cleanup?: () => any | Promise<any>
 }
 
 export type RunCmd<T = string> = T | ((prev: any, ctx: AcaoContext) => T | Promise<T>)
@@ -26,6 +33,8 @@ export type RunCmd<T = string> = T | ((prev: any, ctx: AcaoContext) => T | Promi
 export interface RunOptions extends ExecaOptions {
   ssh: boolean
   transform: (stdout: string) => any | Promise<any>
+  beforeExec: (ctx: AcaoContext) => any | Promise<any>
+  afterExec: (ctx: AcaoContext) => any | Promise<any>
 }
 
 export interface AcaoContext {

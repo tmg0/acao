@@ -139,6 +139,8 @@ Here are some extra options in the second parameter of `run`:
 export interface RunOptions extends ExecaOptions {
   ssh: boolean
   transform: (stdout: string) => any | Promise<any>
+  beforeExec: (ctx: AcaoContext) => any | Promise<any>
+  afterExec: (ctx: AcaoContext) => any | Promise<any>
 }
 ```
 
@@ -197,15 +199,10 @@ export default defineConfig({
 
 For common commands, `Acao` also provide some presets
 
-🚧 More presets are coming soon!
-
 - [`docker`](./packages/docker/README.md)
-- [~~`fs`~~](./packages/fs/README.md)
 - [`git`](./packages/git/README.md)
 - [`sed`](./packages/sed/README.md)
 - [`volta`](./packages/volta/README.md)
-
-Considering about removing the `fs` module from the presets in next version and recommend using `defineRunner` instead.
 
 ### `SSH`
 
@@ -322,6 +319,16 @@ export default defineConfig({
 - Type: `Record<string, Job>`
 - Default: `{}`
 
+### `options.setup`
+
+- Type: `() => Promise<any>`
+- Default: `undefined`
+
+### `options.cleanup`
+
+- Type: `() => Promise<any>`
+- Default: `undefined`
+
 ### `options.jobs.<key>.ssh`
 
 - Type: `SSH`
@@ -335,6 +342,31 @@ interface SSH {
   port?: number
 }
 ```
+
+### `options.jobs.<key>.beforeConnectSSH`
+
+- Type: `() => Promise<any>`
+- Default: `undefined`
+
+### `options.jobs.<key>.afterConnectSSH`
+
+- Type: `() => Promise<any>`
+- Default: `undefined`
+
+### `options.jobs.<key>.beforeExec`
+
+- Type: `() => Promise<any>`
+- Default: `undefined`
+
+### `options.jobs.<key>.afterExec`
+
+- Type: `() => Promise<any>`
+- Default: `undefined`
+
+### `options.jobs.<key>.afterCloseSSH`
+
+- Type: `() => Promise<any>`
+- Default: `undefined`
 
 ### `options.jobs.<key>.steps`
 

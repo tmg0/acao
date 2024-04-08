@@ -14,14 +14,23 @@ export function createAcao(rawOptions: Partial<Options> | undefined | null = {})
   async function runJobs(filters: string[] = []) {
     const ordered = filterJobs(jobs, filters)
 
+    options.setup?.()
+
     for (const batch of ordered) {
       await Promise.all(batch.map(name => (async function () {
         const job = options.jobs[name]
         const ssh = createSSH(job.ssh)
-        if (ssh)
-          await ssh.connect?.()
+
+        if (ssh) {
+          await job.beforeConnectSSH?.()
+          await ssh.connect()
+          await job.afterConnectSSH?.()
+        }
+
         if (!ctx.outputs[name])
           ctx.outputs[name] = []
+
+        await job.beforeExec?.()
         let index = 0
         for (const step of job.steps) {
           const prev = index > 0 ? ctx.outputs[name][index - 1] : undefined
@@ -29,9 +38,16 @@ export function createAcao(rawOptions: Partial<Options> | undefined | null = {})
           ctx.outputs[name].push(stdout)
           index = index + 1
         }
-        ssh?.close()
+        await job.afterExec?.()
+
+        if (ssh) {
+          ssh.close()
+          await job.afterCloseSSH?.()
+        }
       })()))
     }
+
+    options.cleanup?.()
   }
 
   return {
