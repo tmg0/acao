@@ -30,11 +30,6 @@
       "import": "./dist/docker.js",
       "require": "./dist/docker.cjs"
     },
-    "./fs": {
-      "types": "./dist/fs.d.ts",
-      "import": "./dist/fs.js",
-      "require": "./dist/fs.cjs"
-    },
     "./git": {
       "types": "./dist/git.d.ts",
       "import": "./dist/git.js",

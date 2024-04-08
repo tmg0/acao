@@ -1,7 +1,0 @@
-{
-  "name": "@acao/fs",
-  "scripts": {
-    "dev": "tsup --watch",
-    "build": "tsup"
-  }
-}
