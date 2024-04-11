@@ -58,6 +58,10 @@ export function createAcao(rawOptions: Partial<Options> | undefined | null = {})
 }
 
 export function filterJobs(jobs: string[][], filters: string[]) {
+  const _flattenJobs = jobs.flat()
+
+  filters = filters.filter(f => _flattenJobs.includes(f))
+
   if (!filters?.length)
     return jobs
 
