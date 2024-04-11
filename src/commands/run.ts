@@ -11,9 +11,23 @@ export default defineCommand({
       description: 'Specific job name, single job or list of jobs',
       required: false,
     },
+
+    noUpdateNotifier: {
+      type: 'boolean',
+      description: 'Ignore Acao update notifier',
+      required: false,
+      default: false,
+    },
+
+    noNeeds: {
+      type: 'boolean',
+      description: 'Run sepcify job(s) without dependencies',
+      required: false,
+      default: false,
+    },
   },
 
   async run(ctx) {
-    await createAcao(await loadAcaoConfig()).runJobs(ctx.args._)
+    await createAcao(await loadAcaoConfig(), { args: ctx.args }).runJobs(ctx.args._, { noNeeds: ctx.args.noNeeds })
   },
 })

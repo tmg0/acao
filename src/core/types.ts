@@ -39,6 +39,7 @@ export interface RunOptions extends ExecaOptions {
 
 export interface AcaoContext {
   options: Options
+  args: Record<string, any>
   job?: string
   step?: number
   ssh?: SSH | undefined

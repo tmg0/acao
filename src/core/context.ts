@@ -2,17 +2,22 @@ import { resolveOptions } from './options'
 import { createSSH } from './ssh'
 import type { AcaoContext, AcaoJob, Options } from './types'
 
-export function createAcao(rawOptions: Partial<Options> | undefined | null = {}) {
+export interface RunJobsOptions {
+  noNeeds: boolean
+}
+
+export function createAcao(rawOptions: Partial<Options> | undefined | null = {}, { args }: { args?: Record<string, any> } = {}) {
   const options = resolveOptions(rawOptions)
   const jobs = orderJobs(options.jobs)
 
   const ctx: AcaoContext = {
     options,
+    args: args ?? {},
     outputs: {},
   }
 
-  async function runJobs(filters: string[] = []) {
-    const ordered = filterJobs(jobs, filters)
+  async function runJobs(filters: string[] = [], { noNeeds }: Partial<RunJobsOptions> = {}) {
+    const ordered = filterJobs(noNeeds ? [jobs.flat()] : jobs, filters)
 
     options.setup?.()
 

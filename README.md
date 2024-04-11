@@ -53,10 +53,51 @@ An alias for the `acao`
 acao run
 ```
 
-Can also specify a single job or list of jobs
+Can also specify a single job or list of jobs.
 
 ```bash
 acao run ci cd
+```
+
+If there are dependency relationships based on `needs` between jobs, `Acao` will execute the dependent items by default.
+
+This can be overridden by using the `noNeeds` parameter to run a specific job independently.
+
+```bash
+acao run cd --noNeeds
+```
+
+Normally a job with dependencies will require the output of its dependencies.
+
+And args can be achieved by adding parameters to the command line to inject values into the context.
+
+```bash
+acao run cd --noNeeds --image IMAGE:TAG
+```
+
+In the following example, `IMAGE:TAG` will be output to the console.
+
+```ts
+// acao.config.ts
+import { defineConfig, run } from './src'
+
+export default defineConfig({
+  jobs: {
+    ci: {
+      steps: [
+        run(`echo ci`, { stdio: 'inherit' }),
+      ]
+    },
+
+    cd: {
+      needs: 'ci',
+
+      steps: [
+        run((_, ctx) => `echo ${ctx.args.image}`, { stdio: 'inherit' }),
+      ]
+    }
+  },
+})
 ```
 
 ### `acao preview`
