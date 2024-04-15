@@ -1,6 +1,8 @@
 import { resolveOptions } from './options'
+import { run } from './runner'
 import { createSSH } from './ssh'
 import type { AcaoContext, AcaoJob, Options } from './types'
+import { isString } from './utils'
 
 export interface RunJobsOptions {
   noNeeds: boolean
@@ -39,7 +41,8 @@ export function createAcao(rawOptions: Partial<Options> | undefined | null = {},
         let index = 0
         for (const step of job.steps) {
           const prev = index > 0 ? ctx.outputs[name][index - 1] : undefined
-          const stdout = await step(prev, { ...ctx, job: name, step: index, ssh })
+          const _step = isString(step) ? run(step, { stdio: 'inherit' }) : step
+          const stdout = await _step(prev, { ...ctx, job: name, step: index, ssh })
           ctx.outputs[name].push(stdout)
           index = index + 1
         }
