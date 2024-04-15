@@ -85,7 +85,7 @@ export default defineConfig({
   jobs: {
     ci: {
       steps: [
-        run(`echo ci`, { stdio: 'inherit' }),
+        'echo ci',
       ]
     },
 
@@ -125,6 +125,8 @@ export default defineConfig({})
 
 You can use `acao.config.{js,cjs,mjs,ts,mts,cts}` to specify configuration.
 
+String can also be used as a `step` in `jobs`, if there is no need to use the extended capabilities of `run`, you can defined the configuration file in  `acao.config.json` file and execute it with `npx acao`.
+
 **Example**
 
 ```ts
@@ -136,6 +138,7 @@ export default defineConfig({
     ci: {
       steps: [
         run('echo Hello', { stdio: 'inherit' }),
+        'echo Acao'
       ],
     },
   },
@@ -411,7 +414,7 @@ interface SSH {
 
 ### `options.jobs.<KEY>.steps`
 
-- Type: `(() => Promise<string>)[]`
+- Type: `(string | (() => Promise<string>))[]`
 - Default: `[]`
 
 ## License
