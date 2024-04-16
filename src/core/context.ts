@@ -1,3 +1,5 @@
+import { oraPromise } from 'ora'
+import { version } from '../../package.json'
 import { resolveOptions } from './options'
 import { run } from './runner'
 import { createSSH } from './ssh'
@@ -14,6 +16,7 @@ export function createAcao(rawOptions: Partial<Options> | undefined | null = {},
 
   const ctx: AcaoContext = {
     options,
+    version,
     args: args ?? {},
     outputs: {},
   }
@@ -28,30 +31,36 @@ export function createAcao(rawOptions: Partial<Options> | undefined | null = {},
         const job = options.jobs[name]
         const ssh = createSSH(job.ssh)
 
-        if (ssh) {
-          await job.beforeConnectSSH?.()
-          await ssh.connect()
-          await job.afterConnectSSH?.()
+        async function _runSteps() {
+          if (ssh) {
+            await job.beforeConnectSSH?.()
+            await ssh.connect()
+            await job.afterConnectSSH?.()
+          }
+
+          if (!ctx.outputs[name])
+            ctx.outputs[name] = []
+
+          await job.beforeExec?.()
+
+          let index = 0
+          for (const step of job.steps) {
+            const prev = index > 0 ? ctx.outputs[name][index - 1] : undefined
+            const _step = isString(step) ? run(step) : step
+            const stdout = await _step(prev, { ...ctx, job: name, step: index, ssh })
+            ctx.outputs[name].push(stdout)
+            index = index + 1
+          }
+
+          await job.afterExec?.()
+
+          if (ssh) {
+            ssh.close()
+            await job.afterCloseSSH?.()
+          }
         }
 
-        if (!ctx.outputs[name])
-          ctx.outputs[name] = []
-
-        await job.beforeExec?.()
-        let index = 0
-        for (const step of job.steps) {
-          const prev = index > 0 ? ctx.outputs[name][index - 1] : undefined
-          const _step = isString(step) ? run(step, { stdio: 'inherit' }) : step
-          const stdout = await _step(prev, { ...ctx, job: name, step: index, ssh })
-          ctx.outputs[name].push(stdout)
-          index = index + 1
-        }
-        await job.afterExec?.()
-
-        if (ssh) {
-          ssh.close()
-          await job.afterCloseSSH?.()
-        }
+        await oraPromise(_runSteps, job.name ?? name)
       })()))
     }
 
