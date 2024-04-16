@@ -60,7 +60,7 @@ export function createAcao(rawOptions: Partial<Options> | undefined | null = {},
           }
         }
 
-        await oraPromise(_runSteps, job.name ?? name)
+        await oraPromise(_runSteps, { text: job.name ?? name, suffixText: '\r' })
       })()))
     }
 
