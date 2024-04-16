@@ -14,6 +14,7 @@ export async function checkForUpdateOf(name: string, current: string = packageJs
     needsUpdate = latest !== current && semver.lt(current, latest)
   }
   catch {
+    console.log()
     consola.warn(`Cannot fetch the latest version of ${name} by npm.`)
   }
 

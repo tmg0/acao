@@ -11,6 +11,7 @@ export interface SSHOptions {
 export type AcaoJobStep = (prev: any, ctx: AcaoContext) => Promise<any>
 
 export interface AcaoJob {
+  name?: string
   ssh?: SSHOptions
   needs?: string | string[]
   steps: (string | AcaoJobStep)[]
@@ -40,6 +41,7 @@ export interface RunOptions extends ExecaOptions {
 export interface AcaoContext {
   options: Options
   args: Record<string, any>
+  version: string
   job?: string
   step?: number
   ssh?: SSH | undefined

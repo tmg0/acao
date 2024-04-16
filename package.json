@@ -71,7 +71,7 @@
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",
-    "test": "vitest",
+    "test": "vitest run",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
@@ -82,6 +82,7 @@
     "defu": "^6.1.4",
     "destr": "^2.0.3",
     "execa": "^8.0.1",
+    "ora": "^8.0.1",
     "pacote": "^17.0.6",
     "semver": "^7.6.0",
     "ssh2": "^1.15.0"
