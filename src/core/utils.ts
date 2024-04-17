@@ -1,3 +1,4 @@
+import process from 'node:process'
 import { destr } from 'destr'
 import type { RunOptions } from './types'
 
@@ -8,4 +9,17 @@ export function transformStdout(stdout: string, transform?: RunOptions['transfor
   if (!transform)
     return destr(stdout)
   return transform(stdout)
+}
+
+export const spinnerFrames = process.platform === 'win32'
+  ? ['-', '\\', '|', '/']
+  : ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']
+
+export function elegantSpinner() {
+  let index = 0
+
+  return () => {
+    index = ++index % spinnerFrames.length
+    return spinnerFrames[index]
+  }
 }

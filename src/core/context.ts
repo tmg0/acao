@@ -5,6 +5,7 @@ import { run } from './runner'
 import { createSSH } from './ssh'
 import type { AcaoContext, AcaoJob, Options } from './types'
 import { isString } from './utils'
+import { Logger } from './logger'
 
 export interface RunJobsOptions {
   noNeeds: boolean
@@ -21,17 +22,25 @@ export function createAcao(rawOptions: Partial<Options> | undefined | null = {},
     outputs: {},
   }
 
+  ctx.logger = new Logger(ctx)
+
   async function runJobs(filters: string[] = [], { noNeeds }: Partial<RunJobsOptions> = {}) {
     const ordered = filterJobs(noNeeds ? [jobs.flat()] : jobs, filters)
 
+    const sleep = (go: boolean = true): Promise<void> => new Promise((res, rej) => setTimeout(() => { go ? res() : rej(new Error()) }, 1000))
+    oraPromise(() => sleep(true))
+    // oraPromise(sleep(false))
+
     options.setup?.()
+    ctx.logger?.printBanner()
+    ctx.logger?.setup(ordered)
 
     for (const batch of ordered) {
       await Promise.all(batch.map(name => (async function () {
         const job = options.jobs[name]
         const ssh = createSSH(job.ssh)
 
-        async function _runSteps() {
+        try {
           if (ssh) {
             await job.beforeConnectSSH?.()
             await ssh.connect()
@@ -58,13 +67,16 @@ export function createAcao(rawOptions: Partial<Options> | undefined | null = {},
             ssh.close()
             await job.afterCloseSSH?.()
           }
+          ctx.logger?.updateJobState(name, 'fulfilled')
         }
-
-        await oraPromise(_runSteps, { text: job.name ?? name, suffixText: '\r' })
+        catch {
+          ctx.logger?.updateJobState(name, 'rejected')
+        }
       })()))
     }
 
     options.cleanup?.()
+    ctx.logger?.done()
   }
 
   return {
