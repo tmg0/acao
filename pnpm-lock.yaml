@@ -65,7 +65,7 @@ importers:
         version: 3.3.2
       oxlint:
         specifier: ^0.2.14
-        version: 0.2.17
+        version: 0.2.18
       tsup:
         specifier: ^8.0.2
         version: 8.0.2(postcss@8.4.38)(typescript@5.4.5)
@@ -74,7 +74,7 @@ importers:
         version: 5.4.5
       unplugin-oxlint:
         specifier: ^0.5.1
-        version: 0.5.3(oxlint@0.2.17)
+        version: 0.5.3(oxlint@0.2.18)
       vitest:
         specifier: ^1.4.0
         version: 1.5.0(@types/node@20.12.7)
@@ -571,43 +571,43 @@ packages:
     resolution: {integrity: sha512-5noc+eCQmX1W9nlFUe65n5MIteikd3vOA2sEPdXtlUv68KWyHNFZnT/LDRXu/E4nZ5yxjciP30pADr/GQ97W1w==}
     engines: {node: ^16.14.0 || >=18.0.0}
 
-  '@oxlint/darwin-arm64@0.2.17':
-    resolution: {integrity: sha512-7XkZrhjkumMi7eoxZeyvnmE7onXUZamZM/esYX7gXp2HKVPXDtpp1rzLwSeX1ugXtQa979LjCZYpdjkskoFopw==}
+  '@oxlint/darwin-arm64@0.2.18':
+    resolution: {integrity: sha512-DpPId0O8hHh1/PjbtJSMi3DvgK5ol49hB+jiogYGXvBPOF2/8/tG1v7dtbACx4pcorUMu4EHHKHigasnx114cQ==}
     cpu: [arm64]
     os: [darwin]
 
-  '@oxlint/darwin-x64@0.2.17':
-    resolution: {integrity: sha512-x6WpWIECuSfKJseqf86om0YgIgiP+pB5/L1Nd/5to2/WaORccuaz7Lg4ts/sWBXAXmq3EWlt2TOlLM2UOCVemw==}
+  '@oxlint/darwin-x64@0.2.18':
+    resolution: {integrity: sha512-hdnPhG/nxF2F8YI9lg3uYMH1ZYxSKiDPu2srey1Xvo2LZChNnvbvxXNS5UYAxG9f/U6VbH4WYfUcqbNZW5Tnzw==}
     cpu: [x64]
     os: [darwin]
 
-  '@oxlint/linux-arm64-gnu@0.2.17':
-    resolution: {integrity: sha512-dt1fqqJaK/28TMR74vNYO6eKTw8A9c4xzEbxL4dNgHpWAya+HStQdJ8lrBP7/EWWBFUTZg104Q/TEcqxvtzguA==}
+  '@oxlint/linux-arm64-gnu@0.2.18':
+    resolution: {integrity: sha512-bhCHYlIn8I5bw5AulQKhYJzanLFoi7mgIkqzfiJibCrGrQh3IKv3h0k8bWHqLEYMmufhGz7yhS96oY3Pe0K1Aw==}
     cpu: [arm64]
     os: [linux]
 
-  '@oxlint/linux-arm64-musl@0.2.17':
-    resolution: {integrity: sha512-G7T2CcDONDxzvbd6vfjRtmGuNG/0oc2wNc2Wn2X9jIwDDLe9BaHWjeRUo0K5JRPDcpPWitdDIdOunkJMDqKvKQ==}
+  '@oxlint/linux-arm64-musl@0.2.18':
+    resolution: {integrity: sha512-TbZONlryL36xWLUCNRhYZ0m92io6hiN0Ho8ez4T5BoTWwaKwyTdAvpbH7vFDlVDAsp33GB81DXsFSAjPq8PIng==}
     cpu: [arm64]
     os: [linux]
 
-  '@oxlint/linux-x64-gnu@0.2.17':
-    resolution: {integrity: sha512-5COsQKgvT60sKC0v2UJk6DzXwQa/Dz4+hhWl6kwb93UW7crB+701WXRtPGBlWYYPnRZs4Vkp9+a5s+L6F8S3uw==}
+  '@oxlint/linux-x64-gnu@0.2.18':
+    resolution: {integrity: sha512-Leupfl0E85BC1t8zB+vqUeeKami+Lo/8HiihLUQAbjz+O8J2WuNaOmt/GURK5jINQhEASBw8dnhNFBMKYe6ZgA==}
     cpu: [x64]
     os: [linux]
 
-  '@oxlint/linux-x64-musl@0.2.17':
-    resolution: {integrity: sha512-DSm3E7tXJnL+V/Q+EN8gcf56+k2P25tPgGs1QDP7sGyfqRzVG+ypbPmakhsaCy6wKh3t08LS6PaxjgFu5o4ZsA==}
+  '@oxlint/linux-x64-musl@0.2.18':
+    resolution: {integrity: sha512-THG4LZ8KeCy87E4tHqC765acRW0dyXdgzqERi3idjSupCH8juTpk9UfZVcpxcqEicXnEuZDkBQpO8nboyFng3Q==}
     cpu: [x64]
     os: [linux]
 
-  '@oxlint/win32-arm64@0.2.17':
-    resolution: {integrity: sha512-LEWucUc5J1JHcPBLdg960nSotehMAMG7YJodibgLK7EoemOI6CSo2o/GE3tRuLDaDVnG4NnXKXuNyGpZJ9OMCQ==}
+  '@oxlint/win32-arm64@0.2.18':
+    resolution: {integrity: sha512-X/boJsMQiuO2Wfu3eabWefFlb0+O5oSXjcG0gmIE9aySNMy/pVyCno2/RGy+0f4xSjBZXmamCsEoQp/E8NeDQQ==}
     cpu: [arm64]
     os: [win32]
 
-  '@oxlint/win32-x64@0.2.17':
-    resolution: {integrity: sha512-OvsfcP+C523Ml0cIfmkv1O+vRFYmVj+iDZO/4F6Ee0yEnjux8KqEfmXt1Idoyk8OD0p6buFwqgNxZesumGZ5PA==}
+  '@oxlint/win32-x64@0.2.18':
+    resolution: {integrity: sha512-LmwDhDaZYd20WKmHPeITYNazGVUBFvs7D9+WJ+ecx+bX/6euFp8j+e/4sUzxR5gk6pecqyA6WEld52Gy6W92jg==}
     cpu: [x64]
     os: [win32]
 
@@ -2228,8 +2228,8 @@ packages:
     resolution: {integrity: sha512-ANIvzobt1rls2BDny5fWZ3ZVKyD6nscLvfFRpQgfWsythlcsVUC9kL0zq6j2Z5z9wwp1kd7wpsD/T9qNPVLCaQ==}
     engines: {node: '>=18'}
 
-  oxlint@0.2.17:
-    resolution: {integrity: sha512-w+1cpvX2VeaBkEz9LEWd9I2rBt2O++DtFuNYCvtCmo8DFzcoOUEsngnmSz7A0K4lrPVCRn2n3GiC7eyxV5chtA==}
+  oxlint@0.2.18:
+    resolution: {integrity: sha512-/6tR2hm9vN/cjJarItkDPeSWDqPbkQ6pVDzePR2La5cNA+kn1Gt7k0ZHxcpTuhZOI/lhRD2z4C0v/m9kja/0cQ==}
     engines: {node: '>=14.*'}
     hasBin: true
 
@@ -3352,28 +3352,28 @@ snapshots:
       - bluebird
       - supports-color
 
-  '@oxlint/darwin-arm64@0.2.17':
+  '@oxlint/darwin-arm64@0.2.18':
     optional: true
 
-  '@oxlint/darwin-x64@0.2.17':
+  '@oxlint/darwin-x64@0.2.18':
     optional: true
 
-  '@oxlint/linux-arm64-gnu@0.2.17':
+  '@oxlint/linux-arm64-gnu@0.2.18':
     optional: true
 
-  '@oxlint/linux-arm64-musl@0.2.17':
+  '@oxlint/linux-arm64-musl@0.2.18':
     optional: true
 
-  '@oxlint/linux-x64-gnu@0.2.17':
+  '@oxlint/linux-x64-gnu@0.2.18':
     optional: true
 
-  '@oxlint/linux-x64-musl@0.2.17':
+  '@oxlint/linux-x64-musl@0.2.18':
     optional: true
 
-  '@oxlint/win32-arm64@0.2.17':
+  '@oxlint/win32-arm64@0.2.18':
     optional: true
 
-  '@oxlint/win32-x64@0.2.17':
+  '@oxlint/win32-x64@0.2.18':
     optional: true
 
   '@pkgjs/parseargs@0.11.0':
@@ -5217,16 +5217,16 @@ snapshots:
       string-width: 7.1.0
       strip-ansi: 7.1.0
 
-  oxlint@0.2.17:
+  oxlint@0.2.18:
     optionalDependencies:
-      '@oxlint/darwin-arm64': 0.2.17
-      '@oxlint/darwin-x64': 0.2.17
-      '@oxlint/linux-arm64-gnu': 0.2.17
-      '@oxlint/linux-arm64-musl': 0.2.17
-      '@oxlint/linux-x64-gnu': 0.2.17
-      '@oxlint/linux-x64-musl': 0.2.17
-      '@oxlint/win32-arm64': 0.2.17
-      '@oxlint/win32-x64': 0.2.17
+      '@oxlint/darwin-arm64': 0.2.18
+      '@oxlint/darwin-x64': 0.2.18
+      '@oxlint/linux-arm64-gnu': 0.2.18
+      '@oxlint/linux-arm64-musl': 0.2.18
+      '@oxlint/linux-x64-gnu': 0.2.18
+      '@oxlint/linux-x64-musl': 0.2.18
+      '@oxlint/win32-arm64': 0.2.18
+      '@oxlint/win32-x64': 0.2.18
 
   p-limit@2.3.0:
     dependencies:
@@ -5781,7 +5781,7 @@ snapshots:
 
   universalify@2.0.1: {}
 
-  unplugin-oxlint@0.5.3(oxlint@0.2.17):
+  unplugin-oxlint@0.5.3(oxlint@0.2.18):
     dependencies:
       chokidar: 3.6.0
       consola: 3.2.3
@@ -5794,7 +5794,7 @@ snapshots:
       local-pkg: 0.5.0
       nypm: 0.3.8
       ohash: 1.1.3
-      oxlint: 0.2.17
+      oxlint: 0.2.18
       unplugin: 1.10.1
     transitivePeerDependencies:
       - supports-color
