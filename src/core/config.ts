@@ -4,6 +4,7 @@ import JoyCon from 'joycon'
 import { bundleRequire } from 'bundle-require'
 import { defu } from 'defu'
 import type { Options } from './types'
+import { isString } from './utils'
 
 async function bundleRequireAcao(filepath: string) {
   const config = await bundleRequire({
@@ -29,11 +30,11 @@ export async function loadAcaoConfig(cwd = process.cwd()) {
     stopDir: parse(cwd).root,
   })
 
-  let defaults: Options[] = []
+  let defaults: Partial<Options>[] = []
   const options = await bundleRequireAcao(configPath!)
 
   if (options.extends)
-    defaults = await Promise.all([options.extends].flat().map(bundleRequireAcao))
+    defaults = await Promise.all([options.extends].flat().map(c => isString(c) ? bundleRequireAcao(c) : c))
 
   return defu(options, ...defaults)
 }
