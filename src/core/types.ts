@@ -23,8 +23,10 @@ export interface AcaoJob {
   afterCloseSSH?: () => any | Promise<any>
 }
 
+export type OptionsExtend = string | Partial<Options>
+
 export interface Options {
-  extends: string | string[]
+  extends: OptionsExtend | OptionsExtend[]
   jobs: Record<string, AcaoJob>
   setup?: () => any | Promise<any>
   cleanup?: () => any | Promise<any>

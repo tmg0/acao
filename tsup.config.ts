@@ -4,7 +4,7 @@ import Oxlint from 'unplugin-oxlint/esbuild'
 
 export default defineConfig(async (options) => {
   const presets: Record<string, string> = {}
-  const packages = await fg(['packages/*/src/index.ts'])
+  const packages = await fg(['packages/*/src/index.ts', '!packages/ui/**'])
 
   packages.forEach((path) => {
     const [_, name] = path.split('/')
