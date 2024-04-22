@@ -1,8 +1,7 @@
 import { defineRunner } from '@core/runner'
 import type { AcaoContext, RunCmd, RunOptions } from '@core/types'
-import { execaCommand } from 'execa'
 import { defu } from 'defu'
-import { isFunction, isString, transformStdout } from '@core/utils'
+import { execCommand, isFunction, isString, transformStdout } from '@core/utils'
 
 export interface DockerBuildOptions extends RunOptions {
   file: string
@@ -39,8 +38,7 @@ function getDockerCommand(command: DockerCommandType, args: ((string | number) |
 
 function runDockerCommand(cmd: string[], options: Partial<RunOptions>, ctx: AcaoContext) {
   const _cmd = cmd.join(' ')
-  const ssh = options.ssh !== false && ctx.ssh
-  return ssh ? ssh.execCommand(_cmd, options) : execaCommand(_cmd, options)
+  return execCommand(_cmd, options, ctx)
 }
 
 export function dockerBuild(options: RunCmd<Partial<DockerBuildOptions>>) {

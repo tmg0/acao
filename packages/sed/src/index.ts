@@ -1,8 +1,7 @@
-import { execaCommand } from 'execa'
 import { defu } from 'defu'
 import { defineRunner } from '@core/runner'
 import type { RunCmd, RunOptions } from '@core/types'
-import { isFunction, isString, transformStdout } from '@core/utils'
+import { execCommand, isFunction, isString, transformStdout } from '@core/utils'
 
 export interface SubstituteValue {
   find: string
@@ -38,9 +37,7 @@ export function sedSubstitute(filename: RunCmd, rawOptions: RunCmd<Partial<SedSu
       args.map(item => (['-e', item])).flat(),
       _filename,
     ].flat().filter(Boolean).join(' ')
-
-    const ssh = _options.ssh !== false && ctx.ssh
-    const { stdout } = ssh ? await ssh?.execCommand(cmd, _options) : await execaCommand(cmd, _options)
+    const { stdout } = await execCommand(cmd, _options, ctx)
     return transformStdout(stdout, _options.transform)
   })
 }
