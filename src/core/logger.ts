@@ -3,7 +3,7 @@ import { colors } from 'consola/utils'
 import logUpdate from 'log-update'
 import { version } from '../../package.json'
 import type { AcaoContext } from './types'
-import { elegantSpinner } from './utils'
+import { elegantSpinner, sleep } from './utils'
 
 type JobState = 'pending' | 'fulfilled' | 'rejected'
 
@@ -66,19 +66,23 @@ export class Logger {
   }
 
   printJobs() {
-    const spin = colors.blue(this.spinner())
-    const prefixs = { pending: spin, fulfilled: colors.green(1), rejected: colors.red(2) }
-    logUpdate(Object.entries(this._states).map(([name, state]) => `${prefixs[state]} ${name}`).join('\n'), '\n')
+    const spin = colors.yellow(this.spinner())
+    const prefixs = { pending: spin, fulfilled: colors.green('✔'), rejected: colors.red('✖') }
+    logUpdate(Object.entries(this._states).map(([name, state]) => `${prefixs[state]} ${this.ctx.options.jobs[name]?.name ?? name}`).join('\n'), '\n')
   }
 
   updateJobState(name: string, state: JobState) {
     this._states[name] = state
   }
 
-  done() {
-    setTimeout(() => {
-      this._interval.pause()
-      logUpdate.done()
-    }, 200)
+  pause() {
+    this._interval.pause()
+  }
+
+  async done() {
+    await sleep(200)
+    this._interval.pause()
+    logUpdate.done()
+    this._states = {}
   }
 }

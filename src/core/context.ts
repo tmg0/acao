@@ -1,4 +1,4 @@
-import { oraPromise } from 'ora'
+import consola from 'consola'
 import { version } from '../../package.json'
 import { resolveOptions } from './options'
 import { run } from './runner'
@@ -26,10 +26,6 @@ export function createAcao(rawOptions: Partial<Options> | undefined | null = {},
 
   async function runJobs(filters: string[] = [], { noNeeds }: Partial<RunJobsOptions> = {}) {
     const ordered = filterJobs(noNeeds ? [jobs.flat()] : jobs, filters)
-
-    const sleep = (go: boolean = true): Promise<void> => new Promise((res, rej) => setTimeout(() => { go ? res() : rej(new Error()) }, 1000))
-    oraPromise(() => sleep(true))
-    // oraPromise(sleep(false))
 
     options.setup?.()
     ctx.logger?.printBanner()
@@ -69,8 +65,11 @@ export function createAcao(rawOptions: Partial<Options> | undefined | null = {},
           }
           ctx.logger?.updateJobState(name, 'fulfilled')
         }
-        catch {
+        catch (error) {
           ctx.logger?.updateJobState(name, 'rejected')
+          await ctx.logger?.done()
+          consola.error(error)
+          ctx.logger?.log()
         }
       })()))
     }
