@@ -18,7 +18,7 @@ npx acao
 
 💻 Simple way to format and pass outputs to the next step defaults by [destr](https://github.com/unjs/destr#readme)
 
-🎳 Support multiple types of config by [c12](https://github.com/unjs/c12)
+🎳 Support multiple types of config by [joycon](https://github.com/egoist/joycon)
 
 🎁 Friendly command-line helps by [citty](https://github.com/unjs/citty)
 
