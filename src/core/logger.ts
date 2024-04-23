@@ -39,7 +39,7 @@ export class Logger {
   spinner = elegantSpinner()
 
   private _interval = createInterval(() => this.printJobs())
-  private _states: Record<string, JobState> = {}
+  private _states: Record<string, JobState[]> = {}
 
   constructor(
     public ctx: AcaoContext,
@@ -52,7 +52,8 @@ export class Logger {
 
   setup(jobs: string[][]) {
     jobs.flat().forEach((key) => {
-      this._states[key] = 'pending'
+      const steps = this.ctx.options.jobs[key]?.steps ?? []
+      this._states[key] = steps.map(() => 'pending')
     })
 
     this._interval.start()
@@ -68,11 +69,21 @@ export class Logger {
   printJobs() {
     const spin = colors.yellow(this.spinner())
     const prefixs = { pending: spin, fulfilled: colors.green('✔'), rejected: colors.red('✖') }
-    logUpdate(Object.entries(this._states).map(([name, state]) => `${prefixs[state]} ${this.ctx.options.jobs[name]?.name ?? name}`).join('\n'), '\n')
+    logUpdate(Object.entries(this._states).map(([name, states]) => {
+      const s = states.includes('rejected') ? 'rejected' : states.includes('pending') ? 'pending' : 'fulfilled'
+      const p = prefixs[s]
+      const c = colors.gray(`(${states.filter(i => i === 'fulfilled').length}/${states.length})`)
+      const n = this.ctx.options.jobs[name]?.name ?? name
+      return `${p} ${n} ${c}`
+    }).join('\n'), '\n')
   }
 
   updateJobState(name: string, state: JobState) {
-    this._states[name] = state
+    this._states[name] = this._states[name].map(() => state)
+  }
+
+  updateStepState(name: string, stepIndex: number, state: JobState) {
+    this._states[name][stepIndex] = state
   }
 
   pause() {

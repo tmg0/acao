@@ -53,6 +53,7 @@ export function createAcao(rawOptions: Partial<Options> | undefined | null = {},
             const prev = index > 0 ? ctx.outputs[name][index - 1] : undefined
             const _step = isString(step) ? run(step) : step
             const stdout = await _step(prev, { ...ctx, job: name, step: index, ssh })
+            ctx.logger?.updateStepState(name, index, 'fulfilled')
             ctx.outputs[name].push(stdout)
             index = index + 1
           }
