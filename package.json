@@ -1,7 +1,7 @@
 {
   "name": "acao",
   "type": "module",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "description": "Automate your software workflows with javascript.",
   "author": "tmg0",
   "license": "MIT",
@@ -76,14 +76,12 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "bundle-require": "^4.0.3",
+    "c12": "^1.10.0",
     "citty": "^0.1.6",
     "consola": "^3.2.3",
     "defu": "^6.1.4",
     "destr": "^2.0.3",
-    "esbuild": "npm:esbuild-wasm@^0.20.2",
     "execa": "^8.0.1",
-    "joycon": "^3.1.1",
     "log-update": "^6.0.0",
     "pacote": "^18.0.0",
     "semver": "^7.6.0",
