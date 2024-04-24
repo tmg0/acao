@@ -76,7 +76,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "bundle-require": "^4.0.2",
+    "bundle-require": "^4.0.3",
     "citty": "^0.1.6",
     "consola": "^3.2.3",
     "defu": "^6.1.4",
