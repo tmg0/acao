@@ -81,7 +81,7 @@
     "consola": "^3.2.3",
     "defu": "^6.1.4",
     "destr": "^2.0.3",
-    "esbuild": "^0.20.2",
+    "esbuild": "npm:esbuild-wasm@^0.20.2",
     "execa": "^8.0.1",
     "joycon": "^3.1.1",
     "log-update": "^6.0.0",
