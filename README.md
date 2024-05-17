@@ -100,12 +100,12 @@ export default defineConfig({
 })
 ```
 
-### `acao preview`
+### `acao record`
 
-Preview the execution order of jobs.
+Record your input and generate a acao config file.
 
 ```bash
-acao preview
+acao record
 ```
 
 ## Config
