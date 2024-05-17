@@ -76,8 +76,8 @@ importers:
         specifier: ^5.4.3
         version: 5.4.5
       unplugin-oxlint:
-        specifier: ^0.6.0
-        version: 0.6.0(oxlint@0.3.5)
+        specifier: ^0.6.1
+        version: 0.6.1(oxlint@0.3.5)
       vitest:
         specifier: ^1.4.0
         version: 1.6.0(@types/node@20.12.12)
@@ -2758,8 +2758,8 @@ packages:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
     engines: {node: '>= 10.0.0'}
 
-  unplugin-oxlint@0.6.0:
-    resolution: {integrity: sha512-6YW0KYCZpLgTIkOlU4afKUAH2916cWzb0SrwrzOroGxtXzN1CuLXqv4jp/2HhMxXuc9O/V5j842zK9PT+gSdNw==}
+  unplugin-oxlint@0.6.1:
+    resolution: {integrity: sha512-AX5663xtgkygxtBC1Mc5d2qVd8dVR/XvgAXhNJG0xczMPpr7oPzHkc+WleyINaUktB7VB4PojkORe2dJ0lo45g==}
     hasBin: true
     peerDependencies:
       oxlint: ^0.3.0
@@ -3869,7 +3869,7 @@ snapshots:
       ohash: 1.1.3
       pathe: 1.1.2
       perfect-debounce: 1.0.0
-      pkg-types: 1.1.0
+      pkg-types: 1.1.1
       rc9: 2.1.2
 
   cac@6.7.14: {}
@@ -5683,7 +5683,7 @@ snapshots:
 
   universalify@2.0.1: {}
 
-  unplugin-oxlint@0.6.0(oxlint@0.3.5):
+  unplugin-oxlint@0.6.1(oxlint@0.3.5):
     dependencies:
       c12: 1.10.0
       chokidar: 3.6.0
