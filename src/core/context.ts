@@ -5,7 +5,6 @@ import { run } from './runner'
 import { createSSH } from './ssh'
 import type { AcaoContext, AcaoJob, Options } from './types'
 import { isString } from './utils'
-import { Logger } from './logger'
 
 export interface RunJobsOptions {
   noNeeds: boolean
@@ -22,61 +21,47 @@ export function createAcao(rawOptions: Partial<Options> | undefined | null = {},
     outputs: {},
   }
 
-  ctx.logger = new Logger(ctx)
-
   async function runJobs(filters: string[] = [], { noNeeds }: Partial<RunJobsOptions> = {}) {
     const ordered = filterJobs(noNeeds ? [jobs.flat()] : jobs, filters)
 
     options.setup?.()
     ctx.logger?.printBanner()
-    ctx.logger?.setup(ordered)
 
     for (const batch of ordered) {
       await Promise.all(batch.map(name => (async function () {
         const job = options.jobs[name]
         const ssh = createSSH(job.ssh)
 
-        try {
-          if (ssh) {
-            await job.beforeConnectSSH?.()
-            await ssh.connect()
-            await job.afterConnectSSH?.()
-          }
-
-          if (!ctx.outputs[name])
-            ctx.outputs[name] = []
-
-          await job.beforeExec?.()
-
-          let index = 0
-          for (const step of job.steps) {
-            const prev = index > 0 ? ctx.outputs[name][index - 1] : undefined
-            const _step = isString(step) ? run(step) : step
-            const stdout = await _step(prev, { ...ctx, job: name, step: index, ssh })
-            ctx.logger?.updateStepState(name, index, 'fulfilled')
-            ctx.outputs[name].push(stdout)
-            index = index + 1
-          }
-
-          await job.afterExec?.()
-
-          if (ssh) {
-            ssh.close()
-            await job.afterCloseSSH?.()
-          }
-          ctx.logger?.updateJobState(name, 'fulfilled')
+        if (ssh) {
+          await job.beforeConnectSSH?.()
+          await ssh.connect()
+          await job.afterConnectSSH?.()
         }
-        catch (error) {
-          ctx.logger?.updateJobState(name, 'rejected')
-          await ctx.logger?.done()
-          consola.error(error)
-          ctx.logger?.log()
+
+        if (!ctx.outputs[name])
+          ctx.outputs[name] = []
+
+        await job.beforeExec?.()
+
+        let index = 0
+        for (const step of job.steps) {
+          const prev = index > 0 ? ctx.outputs[name][index - 1] : undefined
+          const _step = isString(step) ? run(step) : step
+          const stdout = await _step(prev, { ...ctx, job: name, step: index, ssh })
+          ctx.outputs[name].push(stdout)
+          index = index + 1
+        }
+
+        await job.afterExec?.()
+
+        if (ssh) {
+          ssh.close()
+          await job.afterCloseSSH?.()
         }
       })()))
     }
 
     options.cleanup?.()
-    ctx.logger?.done()
   }
 
   return {
