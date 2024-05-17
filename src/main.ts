@@ -21,7 +21,7 @@ export const main = defineCommand({
 
   subCommands: {
     run: import('./commands/run').then(r => r.default),
-    preview: import('./commands/preview').then(r => r.default),
+    record: import('./commands/record').then(r => r.default),
   },
 
   async run(ctx) {
