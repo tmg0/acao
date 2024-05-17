@@ -1,4 +1,3 @@
-import consola from 'consola'
 import { version } from '../../package.json'
 import { resolveOptions } from './options'
 import { run } from './runner'
