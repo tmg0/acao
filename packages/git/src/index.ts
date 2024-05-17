@@ -34,6 +34,6 @@ export function gitLog(options: Partial<GitLogOptions> = {}) {
       options,
     )
 
-    return transformStdout(stdout, options.transform)
+    return transformStdout(stdout as string, options.transform)
   })
 }

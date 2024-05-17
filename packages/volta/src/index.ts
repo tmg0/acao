@@ -7,7 +7,7 @@ export type VoltaRunCmd = string | ((prev: any, ctx: AcaoContext) => string | Pr
 
 export type VoltaBinary = 'node' | 'npm' | 'yarn' | 'pnpm'
 
-export type VoltaRunOptions = RunOptions & Record<VoltaBinary, string>
+export type VoltaRunOptions = RunOptions & Record<VoltaBinary, any>
 
 type VoltaCommandType = 'run' | 'which'
 
@@ -29,7 +29,7 @@ export function voltaRun(cmd: VoltaRunCmd, options: Partial<VoltaRunOptions> = {
       ],
       options,
     )
-    return transformStdout(stdout, options.transform)
+    return transformStdout(stdout as string, options.transform)
   })
 }
 
@@ -40,6 +40,6 @@ export function voltaWhich(binary: VoltaBinary = 'node', options: Partial<VoltaR
       [binary],
       options,
     )
-    return transformStdout(stdout, options.transform)
+    return transformStdout(stdout as string, options.transform)
   })
 }
