@@ -1,6 +1,5 @@
 import type { Options as ExecaOptions } from 'execa'
 import type { Client } from 'ssh2'
-import type { Logger } from './logger'
 
 export interface SSHOptions {
   host: string
@@ -45,7 +44,6 @@ export interface AcaoContext {
   options: Options
   args: Record<string, any>
   version: string
-  logger?: Logger
   job?: string
   step?: number
   ssh?: SSH | undefined
