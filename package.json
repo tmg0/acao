@@ -72,8 +72,8 @@
     "dev": "tsup --watch",
     "build": "tsup",
     "test": "vitest run",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint": "unox .",
+    "lint:fix": "unox . --fix"
   },
   "dependencies": {
     "citty": "^0.1.6",
