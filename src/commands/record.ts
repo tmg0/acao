@@ -1,23 +1,33 @@
 import { writeFile } from 'node:fs/promises'
-import { join } from 'node:path'
+import { isAbsolute, join, resolve } from 'node:path'
 import process from 'node:process'
 import { defineCommand } from 'citty'
 import consola from 'consola'
 import { execaCommand } from 'execa'
+import { isString } from '../core/utils'
 
 interface PromptLoopOptions {
+  cwd?: string
   exec?: boolean
 }
 
 async function promptLoop(steps: string[] = [], options: PromptLoopOptions) {
-  const ans = await consola.prompt('Step:', { placeholder: 'Enter the command or q...' }) as string
+  let cwd = !options.cwd ? process.cwd() : isAbsolute(options.cwd) ? options.cwd : resolve(options.cwd)
+  const ans = await consola.prompt(`${cwd} %`, { placeholder: 'Enter the command or q...' })
+  if (!isString(ans))
+    return
   if (ans === 'q')
-    return steps
+    return
   const cmd = ans.trim()
+  if (cmd.startsWith('cd')) {
+    const _target = cmd.split(' ')[1]
+    cwd = isAbsolute(_target) ? _target : join(cwd, _target)
+  }
+  else if (options.exec) {
+    await execaCommand(cmd, { shell: true, stdio: 'inherit', cwd })
+  }
   steps.push(cmd)
-  if (options.exec)
-    await execaCommand(cmd, { shell: true, stdio: 'inherit' })
-  await promptLoop(steps, options)
+  await promptLoop(steps, { ...options, cwd })
 }
 
 export default defineCommand({
