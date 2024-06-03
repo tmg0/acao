@@ -24,7 +24,6 @@ export function createAcao(rawOptions: Partial<Options> | undefined | null = {},
     const ordered = filterJobs(noNeeds ? [jobs.flat()] : jobs, filters)
 
     options.setup?.()
-    ctx.logger?.printBanner()
 
     for (const batch of ordered) {
       await Promise.all(batch.map(name => (async function () {
