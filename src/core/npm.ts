@@ -4,7 +4,7 @@ import consola from 'consola'
 import { colors } from 'consola/utils'
 import packageJson from '../../package.json'
 
-export async function checkForUpdateOf(name: string, current: string = packageJson.version) {
+export async function checkForUpdateOf(name: string, current: string = packageJson.version, logger: any = console) {
   let needsUpdate = false
   let latest = current
 
@@ -14,7 +14,7 @@ export async function checkForUpdateOf(name: string, current: string = packageJs
     needsUpdate = latest !== current && semver.lt(current, latest)
   }
   catch {
-    console.log()
+    logger.log()
     consola.warn(`Cannot fetch the latest version of ${name} by npm.`)
   }
 

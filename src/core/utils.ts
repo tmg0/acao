@@ -39,9 +39,9 @@ export function elegantSpinner() {
   }
 }
 
-export function pringBanner() {
-  console.log()
+export function pringBanner(logger: any = console) {
+  logger.log()
   const _version = colors.blue(`v${version}`)
-  console.log(`${colors.inverse(colors.bold(' Acao '))} ${_version} ${colors.gray(resolve('.'))}`)
-  console.log()
+  logger.log(`${colors.inverse(colors.bold(' Acao '))} ${_version} ${colors.gray(resolve('.'))}`)
+  logger.log()
 }

@@ -1,5 +1,13 @@
 {
   "languages": {
+    "JavaScript": {
+      "formatter": {
+        "code_actions": {
+          "source.fixAll.eslint": true
+        }
+      }
+    },
+
     "TypeScript": {
       "formatter": {
         "code_actions": {
