@@ -25,7 +25,7 @@ importers:
         version: 9.1.0
       jiti:
         specifier: ^1.21.0
-        version: 1.21.1
+        version: 1.21.2
       joycon:
         specifier: ^3.1.1
         version: 3.1.1
@@ -1888,8 +1888,8 @@ packages:
     resolution: {integrity: sha512-glPiBfKguqA7v8JsXO3iLjJWZ9FV1vNpoI0I9hI9Mnk5yetO9uPLSpiCEmiVijAssv2f54HpvtzvAHfhPieiDQ==}
     engines: {node: '>=14'}
 
-  jiti@1.21.1:
-    resolution: {integrity: sha512-KMXpzEJMsOFyRj6ZpDTnnlJrdr9umUY+eut5vlRvjVixohitnRFIRTFw9MEu9zPlBxTHZo6xD5ftKYiQZuJYQw==}
+  jiti@1.21.2:
+    resolution: {integrity: sha512-UQEooyi4HPsFoxcsJ0uV4qDVBDpPWVI7D0JOaeCUnhcEpjWFQIeSu8Ecpu2mAZS6ee3QGtFewR3UOp60YiveZQ==}
     hasBin: true
 
   joycon@3.1.1:
@@ -3904,7 +3904,7 @@ snapshots:
       defu: 6.1.4
       dotenv: 16.4.5
       giget: 1.2.3
-      jiti: 1.21.1
+      jiti: 1.21.2
       mlly: 1.7.0
       ohash: 1.1.3
       pathe: 1.1.2
@@ -4807,7 +4807,7 @@ snapshots:
     optionalDependencies:
       '@pkgjs/parseargs': 0.11.0
 
-  jiti@1.21.1: {}
+  jiti@1.21.2: {}
 
   joycon@3.1.1: {}
 
