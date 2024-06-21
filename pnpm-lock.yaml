@@ -22,7 +22,7 @@ importers:
         version: 2.0.3
       execa:
         specifier: ^9.0.0
-        version: 9.2.0
+        version: 9.3.0
       jiti:
         specifier: ^1.21.0
         version: 1.21.6
@@ -1579,8 +1579,8 @@ packages:
     resolution: {integrity: sha512-VyhnebXciFV2DESc+p6B+y0LjSm0krU4OgJN44qFAhBY0TJ+1V61tYD2+wHusZ6F9n5K+vl8k0sTy7PEfV4qpg==}
     engines: {node: '>=16.17'}
 
-  execa@9.2.0:
-    resolution: {integrity: sha512-vpOyYg7UAVKLAWWtRS2gAdgkT7oJbCn0me3gmUmxZih4kd3MF/oo8kNTBTIbkO3yuuF5uB4ZCZfn8BOolITYhg==}
+  execa@9.3.0:
+    resolution: {integrity: sha512-l6JFbqnHEadBoVAVpN5dl2yCyfX28WoBAGaoQcNmLLSedOxTxcn2Qa83s8I/PA5i56vWru2OHOtrwF7Om2vqlg==}
     engines: {node: ^18.19.0 || >=20.5.0}
 
   exponential-backoff@3.1.1:
@@ -4513,7 +4513,7 @@ snapshots:
       signal-exit: 4.1.0
       strip-final-newline: 3.0.0
 
-  execa@9.2.0:
+  execa@9.3.0:
     dependencies:
       '@sindresorhus/merge-streams': 4.0.0
       cross-spawn: 7.0.3
@@ -5783,7 +5783,7 @@ snapshots:
       defu: 6.1.4
       destr: 2.0.3
       eslint: 9.5.0
-      execa: 9.2.0
+      execa: 9.3.0
       fs-extra: 11.2.0
       local-pkg: 0.5.0
       mri: 1.2.0
