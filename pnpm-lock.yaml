@@ -56,7 +56,7 @@ importers:
         version: 7.5.8
       '@types/ssh2':
         specifier: ^1.15.0
-        version: 1.15.0
+        version: 1.15.1
       eslint:
         specifier: ^9.0.0
         version: 9.8.0
@@ -797,8 +797,8 @@ packages:
   '@types/node-fetch@2.6.11':
     resolution: {integrity: sha512-24xFj9R5+rfQJLRyM56qh+wnVSYhyXC2tkoBndtY0U+vubqNsYXGjufB2nn8Q6gt0LrARwL6UBtMCSVCwl4B1g==}
 
-  '@types/node@18.19.43':
-    resolution: {integrity: sha512-Mw/YlgXnyJdEwLoFv2dpuJaDFriX+Pc+0qOBJ57jC1H6cDxIj2xc5yUrdtArDVG0m+KV6622a4p2tenEqB3C/g==}
+  '@types/node@18.19.44':
+    resolution: {integrity: sha512-ZsbGerYg72WMXUIE9fYxtvfzLEuq6q8mKERdWFnqTmOvudMxnz+CBNRoOwJ2kNpFOncrKjT1hZwxjlFgQ9qvQA==}
 
   '@types/node@20.14.14':
     resolution: {integrity: sha512-d64f00982fS9YoOgJkAMolK7MN8Iq3TDdVjchbYHdEmjth/DHowx82GnoA+tVUAN+7vxfYUgAzi+JXbKNd2SDQ==}
@@ -821,8 +821,8 @@ packages:
   '@types/semver@7.5.8':
     resolution: {integrity: sha512-I8EUhyrgfLrcTkzV3TSsGyl1tSuPrEDzr0yd5m90UgNxQkyDXULk3b6MlQqTCpZpNtWe1K0hzclnZkTcLBe2UQ==}
 
-  '@types/ssh2@1.15.0':
-    resolution: {integrity: sha512-YcT8jP5F8NzWeevWvcyrrLB3zcneVjzYY9ZDSMAMboI+2zR1qYWFhwsyOFVzT7Jorn67vqxC0FRiw8YyG9P1ww==}
+  '@types/ssh2@1.15.1':
+    resolution: {integrity: sha512-ZIbEqKAsi5gj35y4P4vkJYly642wIbY6PqoN0xiyQGshKUGXR9WQjF/iF9mXBQ8uBKy3ezfsCkcoHKhd0BzuDA==}
 
   '@types/ssri@7.1.5':
     resolution: {integrity: sha512-odD/56S3B51liILSk5aXJlnYt99S6Rt9EFDDqGtJM26rKHApHcwyU/UoYHrzKkdkHMAIquGWCuHtQTbes+FRQw==}
@@ -3550,7 +3550,7 @@ snapshots:
       '@types/node': 20.14.14
       form-data: 4.0.0
 
-  '@types/node@18.19.43':
+  '@types/node@18.19.44':
     dependencies:
       undici-types: 5.26.5
 
@@ -3583,9 +3583,9 @@ snapshots:
 
   '@types/semver@7.5.8': {}
 
-  '@types/ssh2@1.15.0':
+  '@types/ssh2@1.15.1':
     dependencies:
-      '@types/node': 18.19.43
+      '@types/node': 18.19.44
 
   '@types/ssri@7.1.5':
     dependencies:
