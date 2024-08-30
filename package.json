@@ -89,7 +89,7 @@
     "ssh2": "^1.15.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.9.0",
+    "@antfu/eslint-config": "^3.0.0",
     "@types/node": "^20.11.30",
     "@types/pacote": "^11.1.8",
     "@types/semver": "^7.5.8",
