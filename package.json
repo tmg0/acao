@@ -72,8 +72,8 @@
     "dev": "tsup --watch",
     "build": "tsup",
     "test": "vitest run",
-    "lint": "unox .",
-    "lint:fix": "unox . --fix"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "citty": "^0.1.6",
@@ -81,9 +81,9 @@
     "defu": "^6.1.4",
     "destr": "^2.0.3",
     "execa": "^9.4.0",
-    "jiti": "^2.3.3",
     "joycon": "^3.1.1",
     "log-update": "^6.1.0",
+    "oxrun": "^0.2.6",
     "pacote": "^19.0.0",
     "semver": "^7.6.3",
     "ssh2": "^1.16.0"
@@ -95,12 +95,9 @@
     "@types/semver": "^7.5.8",
     "@types/ssh2": "^1.15.1",
     "eslint": "^9.12.0",
-    "eslint-plugin-oxlint": "^0.9.10",
     "fast-glob": "^3.3.2",
-    "oxlint": "^0.9.10",
     "tsup": "^8.3.0",
     "typescript": "^5.6.3",
-    "unplugin-oxlint": "^0.6.3",
     "vitest": "^2.1.2"
   }
 }

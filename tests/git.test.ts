@@ -1,7 +1,7 @@
-import { describe, expect, it } from 'vitest'
 import { execaCommand } from 'execa'
-import { execRunner } from '../src/core/runner'
+import { describe, expect, it } from 'vitest'
 import { gitLog } from '../packages/git/src'
+import { execRunner } from '../src/core/runner'
 
 describe('git', () => {
   it('gitLog', async () => {

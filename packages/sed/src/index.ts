@@ -1,7 +1,7 @@
-import { defu } from 'defu'
-import { defineRunner } from '@core/runner'
 import type { RunCmd, RunOptions } from '@core/types'
+import { defineRunner } from '@core/runner'
 import { execCommand, isFunction, isString, transformStdout } from '@core/utils'
+import { defu } from 'defu'
 
 export interface SubstituteValue {
   find: string

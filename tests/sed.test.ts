@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { execRunner } from '../src/core/runner'
 import { sedSubstitute } from '../packages/sed/src'
+import { execRunner } from '../src/core/runner'
 
 describe('sed', () => {
   it('sed substitute', async () => {

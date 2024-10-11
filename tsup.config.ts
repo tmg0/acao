@@ -1,6 +1,5 @@
-import { defineConfig } from 'tsup'
 import fg from 'fast-glob'
-import Oxlint from 'unplugin-oxlint/esbuild'
+import { defineConfig } from 'tsup'
 
 export default defineConfig(async (options) => {
   const presets: Record<string, string> = {}
@@ -22,14 +21,5 @@ export default defineConfig(async (options) => {
     dts: true,
     clean: true,
     minify: !options.watch,
-
-    esbuildPlugins: [
-      Oxlint({
-        watch: !!options.watch,
-        includes: ['src/**/*.ts', 'packages/*/src/**/*.ts'],
-        deny: ['correctness'],
-        packageManager: 'npm',
-      }),
-    ],
   }
 })

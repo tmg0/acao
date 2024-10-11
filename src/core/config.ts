@@ -1,19 +1,14 @@
-import process from 'node:process'
-import { parse } from 'node:path'
-import JoyCon from 'joycon'
-import createJiti from 'jiti'
-import { defu } from 'defu'
 import type { Options } from './types'
+import { parse } from 'node:path'
+import process from 'node:process'
+import { defu } from 'defu'
+import JoyCon from 'joycon'
+import { oxrun } from 'oxrun'
 import { isString } from './utils'
 
-const jiti = createJiti(undefined as unknown as string, {
-  interopDefault: true,
-  requireCache: false,
-  esmResolve: true,
-})
-
-function bundleRequireAcao(filepath: string): Promise<Options> {
-  return jiti(filepath)
+async function bundleRequireAcao(filepath: string): Promise<Options> {
+  const mod = await oxrun.import(filepath)
+  return mod.default
 }
 
 export async function loadAcaoConfig(cwd = process.cwd()) {

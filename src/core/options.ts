@@ -1,5 +1,5 @@
-import { defu } from 'defu'
 import type { Options, SSHOptions } from './types'
+import { defu } from 'defu'
 
 export function resolveOptions(rawOptions: Partial<Options> | undefined | null = {}) {
   return defu(rawOptions, { jobs: {} }) as Options

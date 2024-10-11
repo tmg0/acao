@@ -1,7 +1,7 @@
-import { execaCommand } from 'execa'
-import { defineRunner } from '@core/runner'
 import type { AcaoContext, RunOptions } from '@core/types'
+import { defineRunner } from '@core/runner'
 import { isString, transformStdout } from '@core/utils'
+import { execaCommand } from 'execa'
 
 export type VoltaRunCmd = string | ((prev: any, ctx: AcaoContext) => string | Promise<string>)
 

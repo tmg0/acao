@@ -1,7 +1,7 @@
-import pacote from 'pacote'
-import semver from 'semver'
 import consola from 'consola'
 import { colors } from 'consola/utils'
+import pacote from 'pacote'
+import semver from 'semver'
 import packageJson from '../../package.json'
 
 export async function checkForUpdateOf(name: string, current: string = packageJson.version, logger: any = console) {

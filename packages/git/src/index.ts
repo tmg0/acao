@@ -1,7 +1,7 @@
-import { defineRunner } from '@core/runner'
 import type { RunOptions } from '@core/types'
-import { execa } from 'execa'
+import { defineRunner } from '@core/runner'
 import { transformStdout } from '@core/utils'
+import { execa } from 'execa'
 
 export interface GitLogOptions extends RunOptions {
   number: number

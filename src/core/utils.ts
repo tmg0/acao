@@ -1,13 +1,13 @@
-import process from 'node:process'
+import type { AcaoContext, RunOptions } from './types'
 import { resolve } from 'node:path'
+import process from 'node:process'
+import { colors } from 'consola/utils'
 import { destr } from 'destr'
 import { execaCommand } from 'execa'
-import { colors } from 'consola/utils'
 import { version } from '../../package.json'
-import type { AcaoContext, RunOptions } from './types'
 
 export const isString = (value: any): value is string => typeof value === 'string'
-export const isFunction = (value: any): value is Function => typeof value === 'function'
+export const isFunction = (value: any): value is ((...args: any[]) => any) => typeof value === 'function'
 
 export async function execCommand(cmd: string, options: Partial<RunOptions>, ctx: AcaoContext) {
   const ssh = options.ssh !== false && ctx.ssh

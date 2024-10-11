@@ -1,7 +1,7 @@
-import process from 'node:process'
 import type { Options } from 'execa'
-import { Client } from 'ssh2'
 import type { SSH, SSHOptions } from './types'
+import process from 'node:process'
+import { Client } from 'ssh2'
 import { resolveSSHOptions } from './options'
 
 export function createSSH(rawOptions?: SSHOptions): SSH | undefined {

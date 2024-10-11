@@ -1,7 +1,7 @@
-import { defineRunner } from '@core/runner'
 import type { AcaoContext, RunCmd, RunOptions } from '@core/types'
-import { defu } from 'defu'
+import { defineRunner } from '@core/runner'
 import { execCommand, isFunction, isString, transformStdout } from '@core/utils'
+import { defu } from 'defu'
 
 export interface DockerBuildOptions extends RunOptions {
   file: string
