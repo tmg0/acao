@@ -33,8 +33,8 @@ importers:
         specifier: ^0.2.6
         version: 0.2.6
       pacote:
-        specifier: ^19.0.0
-        version: 19.0.1
+        specifier: ^20.0.0
+        version: 20.0.0
       semver:
         specifier: ^7.6.3
         version: 7.6.3
@@ -2451,8 +2451,8 @@ packages:
   package-manager-detector@0.2.0:
     resolution: {integrity: sha512-E385OSk9qDcXhcM9LNSe4sdhx8a9mAPrZ4sMLW+tmxl5ZuGtPUcdFu+MPP2jbgiWAZ6Pfe5soGFMd+0Db5Vrog==}
 
-  pacote@19.0.1:
-    resolution: {integrity: sha512-zIpxWAsr/BvhrkSruspG8aqCQUUrWtpwx0GjiRZQhEM/pZXrigA32ElN3vTcCPUDOFmHr6SFxwYrvVUs5NTEUg==}
+  pacote@20.0.0:
+    resolution: {integrity: sha512-pRjC5UFwZCgx9kUFDVM9YEahv4guZ1nSLqwmWiLUnDbGsjs+U5w7z6Uc8HNR1a6x8qnu5y9xtGE6D1uAuYz+0A==}
     engines: {node: ^18.17.0 || >=20.5.0}
     hasBin: true
 
@@ -5737,7 +5737,7 @@ snapshots:
 
   package-manager-detector@0.2.0: {}
 
-  pacote@19.0.1:
+  pacote@20.0.0:
     dependencies:
       '@npmcli/git': 6.0.1
       '@npmcli/installed-package-contents': 3.0.0
