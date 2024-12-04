@@ -16,7 +16,7 @@ export default defineConfig(async (options) => {
       ...presets,
     },
 
-    format: ['cjs', 'esm'],
+    format: ['esm'],
     splitting: true,
     dts: true,
     clean: true,

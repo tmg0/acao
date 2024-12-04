@@ -22,35 +22,30 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": "./dist/index.js"
     },
     "./docker": {
       "types": "./dist/docker.d.ts",
-      "import": "./dist/docker.js",
-      "require": "./dist/docker.cjs"
+      "import": "./dist/docker.js"
     },
     "./git": {
       "types": "./dist/git.d.ts",
-      "import": "./dist/git.js",
-      "require": "./dist/git.cjs"
+      "import": "./dist/git.js"
     },
     "./sed": {
       "types": "./dist/sed.d.ts",
-      "import": "./dist/sed.js",
-      "require": "./dist/sed.cjs"
+      "import": "./dist/sed.js"
     },
     "./volta": {
       "types": "./dist/volta.d.ts",
-      "import": "./dist/volta.js",
-      "require": "./dist/volta.cjs"
+      "import": "./dist/volta.js"
     },
     "./*": [
       "./*",
       "./*.d.ts"
     ]
   },
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "typesVersions": {
