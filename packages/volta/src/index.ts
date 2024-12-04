@@ -1,4 +1,4 @@
-import type { TsmkContext, RunOptions } from '@core/types'
+import type { RunOptions, TsmkContext } from '@core/types'
 import { defineRunner } from '@core/runner'
 import { isString, transformStdout } from '@core/utils'
 import { execaCommand } from 'execa'
