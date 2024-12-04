@@ -1,11 +1,11 @@
 # Ação
 
-> [!IMPORTANT]
-> _Acao has change to tsmk from v0.7.0, please use tsmk command instead_
-
 <sup>(/a'sɐ̃ʊ̃/, <em>action</em> in Portuguese)</sup>
 
 [![NPM version](https://img.shields.io/npm/v/acao)](https://www.npmjs.com/package/acao)
+
+> [!IMPORTANT]
+> _`acao` has change to tsmk from v0.7.0, please use `tsmk` command instead_
 
 🎬 Automate your software workflows with javascript. Make code review, unit test, and CI/CD works the way you want.
 
