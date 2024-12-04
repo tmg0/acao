@@ -1,5 +1,8 @@
 # Ação
 
+> [!IMPORTANT]
+> _Acao has change to tsmk from v0.7.0, please use tsmk command instead_
+
 <sup>(/a'sɐ̃ʊ̃/, <em>action</em> in Portuguese)</sup>
 
 [![NPM version](https://img.shields.io/npm/v/acao)](https://www.npmjs.com/package/acao)
