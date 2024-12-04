@@ -3,12 +3,12 @@ import { description, version } from '../package.json'
 import { checkUpdates } from './core/npm'
 
 export const main = defineCommand({
-  meta: { name: 'acao', version, description },
+  meta: { name: 'tsmk', version, description },
 
   args: {
     noUpdateNotifier: {
       type: 'boolean',
-      description: 'Ignore Acao update notifier',
+      description: 'Ignore tsmk update notifier',
       required: false,
       default: false,
     },

@@ -1,6 +1,6 @@
 import { defineCommand } from 'citty'
-import { loadAcaoConfig } from '../core/config'
-import { createAcao } from '../core/context'
+import { loadTsmkConfig } from '../core/config'
+import { createTsmk } from '../core/context'
 
 export default defineCommand({
   meta: { name: 'run', description: 'Run jobs' },
@@ -14,7 +14,7 @@ export default defineCommand({
 
     noUpdateNotifier: {
       type: 'boolean',
-      description: 'Ignore Acao update notifier',
+      description: 'Ignore tsmk update notifier',
       required: false,
       default: false,
     },
@@ -28,6 +28,6 @@ export default defineCommand({
   },
 
   async run(ctx) {
-    await createAcao(await loadAcaoConfig(), { args: ctx.args }).runJobs(ctx.args._, { noNeeds: ctx.args.noNeeds })
+    await createTsmk(await loadTsmkConfig(), { args: ctx.args }).runJobs(ctx.args._, { noNeeds: ctx.args.noNeeds })
   },
 })

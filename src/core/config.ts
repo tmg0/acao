@@ -6,32 +6,32 @@ import JoyCon from 'joycon'
 import { oxrun } from 'oxrun'
 import { isString } from './utils'
 
-async function bundleRequireAcao(filepath: string): Promise<Options> {
+async function bundleRequireTsmk(filepath: string): Promise<Options> {
   const mod = await oxrun.import(filepath)
   return mod.default
 }
 
-export async function loadAcaoConfig(cwd = process.cwd()) {
+export async function loadTsmkConfig(cwd = process.cwd()) {
   const configJoycon = new JoyCon()
   const configPath = await configJoycon.resolve({
     files: [
-      'acao.config.ts',
-      'acao.config.cts',
-      'acao.config.mts',
-      'acao.config.js',
-      'acao.config.cjs',
-      'acao.config.mjs',
-      'acao.config.json',
+      'tsmk.config.ts',
+      'tsmk.config.cts',
+      'tsmk.config.mts',
+      'tsmk.config.js',
+      'tsmk.config.cjs',
+      'tsmk.config.mjs',
+      'tsmk.config.json',
     ],
     cwd,
     stopDir: parse(cwd).root,
   })
 
   let defaults: Partial<Options>[] = []
-  const options = await bundleRequireAcao(configPath!)
+  const options = await bundleRequireTsmk(configPath!)
 
   if (options.extends)
-    defaults = await Promise.all([options.extends].flat().map(c => isString(c) ? bundleRequireAcao(c) : c))
+    defaults = await Promise.all([options.extends].flat().map(c => isString(c) ? bundleRequireTsmk(c) : c))
 
   return defu(options, ...defaults)
 }

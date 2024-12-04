@@ -1,4 +1,4 @@
-import type { AcaoContext, RunCmd, RunOptions } from '@core/types'
+import type { RunCmd, RunOptions, TsmkContext } from '@core/types'
 import { defineRunner } from '@core/runner'
 import { execCommand, isFunction, isString, transformStdout } from '@core/utils'
 import { defu } from 'defu'
@@ -36,7 +36,7 @@ function getDockerCommand(command: DockerCommandType, args: ((string | number) |
   ].filter(Boolean).map(String)
 }
 
-function runDockerCommand(cmd: string[], options: Partial<RunOptions>, ctx: AcaoContext) {
+function runDockerCommand(cmd: string[], options: Partial<RunOptions>, ctx: TsmkContext) {
   const _cmd = cmd.join(' ')
   return execCommand(_cmd, options, ctx)
 }

@@ -56,7 +56,7 @@ export default defineCommand({
 
     noUpdateNotifier: {
       type: 'boolean',
-      description: 'Ignore Acao update notifier',
+      description: 'Ignore tsmk update notifier',
       required: false,
       default: false,
     },
@@ -66,7 +66,7 @@ export default defineCommand({
     const key = ctx.args.JOB || 'job'
     const steps: string[] = []
     await promptLoop(steps, { exec: !ctx.args.noExec })
-    const imports = ['import { defineConfig } from \'acao\'']
+    const imports = ['import { defineConfig } from \'tsmk\'']
     const exports = [`export default defineConfig({
   jobs: {
     ${key}: {
@@ -76,6 +76,6 @@ export default defineCommand({
 })`]
     const code = [...imports, ...exports].join('\n')
     const ext = ctx.args.ts ? 'ts' : 'js'
-    await writeFile(join(process.cwd(), `acao.config.${ext}`), code)
+    await writeFile(join(process.cwd(), `tsmk.config.${ext}`), code)
   },
 })

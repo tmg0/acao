@@ -1,13 +1,13 @@
-# @acao/sed
+# @tsmk/sed
 
 Basic text transformations on an input stream
 
 ## Usage
 
 ```ts
-// acao.config.ts
-import { defineConfig, run } from 'acao'
-import { sedSubstitute } from 'acao/sed'
+// tsmk.config.ts
+import { defineConfig, run } from 'tsmk'
+import { sedSubstitute } from 'tsmk/sed'
 
 export default defineConfig({
   jobs: {

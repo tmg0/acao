@@ -1,5 +1,5 @@
 {
-  "name": "@acao/volta",
+  "name": "@tsmk/volta",
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup"

@@ -1,5 +1,5 @@
 {
-  "name": "@acao/docker",
+  "name": "@tsmk/docker",
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup"

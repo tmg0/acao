@@ -1,17 +1,17 @@
 {
-  "name": "acao",
+  "name": "tsmk",
   "type": "module",
   "version": "0.6.1",
   "description": "Automate your software workflows with javascript.",
   "author": "tmg0",
   "license": "MIT",
-  "homepage": "https://github.com/tmg0/acao#readme",
+  "homepage": "https://github.com/tmg0/tsmk#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tmg0/acao.git"
+    "url": "git+https://github.com/tmg0/tsmk.git"
   },
   "bugs": {
-    "url": "https://github.com/tmg0/acao/issues"
+    "url": "https://github.com/tmg0/tsmk/issues"
   },
   "keywords": [
     "job",
@@ -63,7 +63,7 @@
     }
   },
   "bin": {
-    "acao": "./bin/acao.mjs"
+    "tsmk": "./bin/tsmk.mjs"
   },
   "files": [
     "dist"
@@ -80,24 +80,24 @@
     "consola": "^3.2.3",
     "defu": "^6.1.4",
     "destr": "^2.0.3",
-    "execa": "^9.4.0",
+    "execa": "^9.5.1",
     "joycon": "^3.1.1",
     "log-update": "^6.1.0",
     "oxrun": "^0.2.6",
-    "pacote": "^19.0.0",
+    "pacote": "^21.0.0",
     "semver": "^7.6.3",
     "ssh2": "^1.16.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.7.3",
-    "@types/node": "^20.16.11",
+    "@antfu/eslint-config": "^3.11.2",
+    "@types/node": "^20.17.9",
     "@types/pacote": "^11.1.8",
     "@types/semver": "^7.5.8",
     "@types/ssh2": "^1.15.1",
-    "eslint": "^9.12.0",
+    "eslint": "^9.16.0",
     "fast-glob": "^3.3.2",
-    "tsup": "^8.3.0",
-    "typescript": "^5.6.3",
-    "vitest": "^2.1.2"
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
   }
 }

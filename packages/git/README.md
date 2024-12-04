@@ -1,4 +1,4 @@
-# @acao/git
+# @tsmk/git
 
 Provide some git commands
 
@@ -9,9 +9,9 @@ Provide some git commands
 Show commit logs
 
 ```ts
-// acao.config.ts
-import { defineConfig, run } from 'acao'
-import { gitLog } from 'acao/git'
+// tsmk.config.ts
+import { defineConfig, run } from 'tsmk'
+import { gitLog } from 'tsmk/git'
 
 export default defineConfig({
   jobs: {

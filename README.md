@@ -1,13 +1,11 @@
-# Ação
-
-<sup>(/a'sɐ̃ʊ̃/, <em>action</em> in Portuguese)</sup>
+# Tsmk
 
 [![NPM version](https://img.shields.io/npm/v/acao)](https://www.npmjs.com/package/acao)
 
-🎬 Automate your software workflows with javascript. Make code review, unit test, and CI/CD works the way you want.
+🎬 Make code review, unit test, and CI/CD works the way just like github actions with typescript.
 
 ```bash
-npx acao
+npx tsmk
 ```
 
 ## Features
@@ -22,49 +20,49 @@ npx acao
 
 🎁 Friendly command-line helps by [citty](https://github.com/unjs/citty)
 
-✨ No installation required - `npx acao`
+✨ No installation required - `npx tsmk`
 
 ## Installation
 
 ```bash
 # npm
-npm i acao -D
+npm i tsmk -D
 
 # yarn
-yarn add acao -D
+yarn add tsmk -D
 
 # pnpm
-pnpm add acao -D
+pnpm add tsmk -D
 ```
 
 ## Usage
 
-Run `acao` in terminal, typically at the same level as the `acao.config` file.
+Run `tsmk` in terminal, typically at the same level as the `tsmk.config` file.
 
-### `acao`
+### `tsmk`
 
-You can quick execute all your jobs with `acao`.
+You can quick execute all your jobs with `tsmk`.
 
-### `acao run <JOB>`
+### `tsmk run <JOB>`
 
-An alias for the `acao`
+An alias for the `tsmk`
 
 ```bash
-acao run
+tsmk run
 ```
 
 Can also specify a single job or list of jobs.
 
 ```bash
-acao run ci cd
+tsmk run ci cd
 ```
 
-If there are dependency relationships based on `needs` between jobs, `Acao` will execute the dependent items by default.
+If there are dependency relationships based on `needs` between jobs, `tsmk` will execute the dependent items by default.
 
 This can be overridden by using the `noNeeds` parameter to run a specific job independently.
 
 ```bash
-acao run cd --noNeeds
+tsmk run cd --noNeeds
 ```
 
 Normally a job with dependencies will require the output of its dependencies.
@@ -72,13 +70,13 @@ Normally a job with dependencies will require the output of its dependencies.
 And args can be achieved by adding parameters to the command line to inject values into the context.
 
 ```bash
-acao run cd --noNeeds --image IMAGE:TAG
+tsmk run cd --noNeeds --image IMAGE:TAG
 ```
 
 In the following example, `IMAGE:TAG` will be output to the console.
 
 ```ts
-// acao.config.ts
+// tsmk.config.ts
 import { defineConfig, run } from './src'
 
 export default defineConfig({
@@ -100,45 +98,45 @@ export default defineConfig({
 })
 ```
 
-### `acao record`
+### `tsmk record`
 
-Record your input and generate a acao config file.
+Record your input and generate a tsmk config file.
 
 ```bash
-acao record
+tsmk record
 ```
 
 ## Config
 
-`Acao` will execute jobs with order defined in the config file.
+`tsmk` will execute jobs with order defined in the config file.
 
 ### `Basic`
 
-Create `acao.config.ts`
+Create `tsmk.config.ts`
 
 ```js
-// acao.config.ts
-import { defineConfig, run } from 'acao'
+// tsmk.config.ts
+import { defineConfig, run } from 'tsmk'
 
 export default defineConfig({})
 ```
 
-You can use `acao.config.{js,cjs,mjs,ts,mts,cts}` to specify configuration.
+You can use `tsmk.config.{js,cjs,mjs,ts,mts,cts}` to specify configuration.
 
-String can also be used as a `step` in `jobs`, if there is no need to use the extended capabilities of `run`, you can defined the configuration file in  `acao.config.json` file and execute it with `npx acao`.
+String can also be used as a `step` in `jobs`, if there is no need to use the extended capabilities of `run`, you can defined the configuration file in  `tsmk.config.json` file and execute it with `npx tsmk`.
 
 **Example**
 
 ```ts
-// acao.config.ts
-import { defineConfig, run } from 'acao'
+// tsmk.config.ts
+import { defineConfig, run } from 'tsmk'
 
 export default defineConfig({
   jobs: {
     ci: {
       steps: [
         run('echo Hello', { stdio: 'inherit' }),
-        'echo Acao'
+        'echo tsmk'
       ],
     },
   },
@@ -147,7 +145,7 @@ export default defineConfig({
 
 ### `Run`
 
-`Acao` exposes a `run` method to execute commands by [execa](https://github.com/sindresorhus/execa).
+`tsmk` exposes a `run` method to execute commands by [execa](https://github.com/sindresorhus/execa).
 
 ```ts
 run('echo Hello')
@@ -158,14 +156,14 @@ Using `run` in `job.steps` also provides a simple way to obtain the output from 
 **Example**
 
 ```ts
-// acao.config.ts
-import { defineConfig, run } from 'acao'
+// tsmk.config.ts
+import { defineConfig, run } from 'tsmk'
 
 export default defineConfig({
   jobs: {
     ci: {
       steps: [
-        run('echo Acao'),
+        run('echo tsmk'),
         run((prev: string) => `echo Hello ${prev}`),
       ],
     },
@@ -183,8 +181,8 @@ Here are some extra options in the second parameter of `run`:
 export interface RunOptions extends ExecaOptions {
   ssh: boolean
   transform: (stdout: string) => any | Promise<any>
-  beforeExec: (ctx: AcaoContext) => any | Promise<any>
-  afterExec: (ctx: AcaoContext) => any | Promise<any>
+  beforeExec: (ctx: TsmkContext) => any | Promise<any>
+  afterExec: (ctx: TsmkContext) => any | Promise<any>
 }
 ```
 
@@ -193,8 +191,8 @@ export interface RunOptions extends ExecaOptions {
 In the following example, the console will output `2`
 
 ```ts
-// acao.config.ts
-import { defineConfig, run } from 'acao'
+// tsmk.config.ts
+import { defineConfig, run } from 'tsmk'
 
 export default defineConfig({
   jobs: {
@@ -225,8 +223,8 @@ const echoHello = defineRunner((prev, ctx) => {
 And `echoHello` can be used in jobs like:
 
 ```ts
-// acao.config.ts
-import { defineConfig, run } from 'acao'
+// tsmk.config.ts
+import { defineConfig, run } from 'tsmk'
 
 export default defineConfig({
   jobs: {
@@ -241,7 +239,7 @@ export default defineConfig({
 
 ### `Presets`
 
-For common commands, `Acao` also provide some presets
+For common commands, `tsmk` also provide some presets
 
 - [`docker`](./packages/docker/README.md)
 - [`git`](./packages/git/README.md)
@@ -254,7 +252,7 @@ Configuring connections in jobs through the `ssh` field to execute commands remo
 
 If declared the `ssh` field, all steps under the current job will be executed remotely by default.
 
-`Acao` will create an SSH connection at the start of the current `job` and close it after all `steps` in the current `job` have been executed.
+`tsmk` will create an SSH connection at the start of the current `job` and close it after all `steps` in the current `job` have been executed.
 
 You can mixin local command execution by declaring `ssh: false` in `run`.
 
@@ -263,8 +261,8 @@ You can mixin local command execution by declaring `ssh: false` in `run`.
 In the following example, the first command will be executed remotely, and the second command will be executed locally.
 
 ```ts
-// acao.config.ts
-import { defineConfig, run } from 'acao'
+// tsmk.config.ts
+import { defineConfig, run } from 'tsmk'
 
 export default defineConfig({
   jobs: {
@@ -293,8 +291,8 @@ Jobs support ordering through the `needs` field in `options.job` with `string` o
 In the following example, `second` will execute first, then `first` and `fourth` will execute sync, and finally, `third` will execute.
 
 ```ts
-// acao.config.ts
-import { defineConfig, run } from 'acao'
+// tsmk.config.ts
+import { defineConfig, run } from 'tsmk'
 
 export default defineConfig({
   jobs: {
@@ -337,14 +335,14 @@ It will be used to extend the configuration, and the final config is merged resu
 **Example**
 
 ```ts
-// acao.config.base.ts
-import { defineConfig, run } from 'acao'
+// tsmk.config.base.ts
+import { defineConfig, run } from 'tsmk'
 
 export default defineConfig({
   jobs: {
     ci: {
       steps: [
-        run('echo Acao'),
+        run('echo tsmk'),
       ],
     },
   },
@@ -352,9 +350,9 @@ export default defineConfig({
 ```
 
 ```ts
-// acao.config.ts
+// tsmk.config.ts
 export default defineConfig({
-  extends: ['./acao.config.base']
+  extends: ['./tsmk.config.base']
 })
 ```
 

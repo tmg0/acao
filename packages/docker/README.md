@@ -1,4 +1,4 @@
-# @acao/docker
+# @tsmk/docker
 
 A self-sufficient runtime for containers
 
@@ -7,9 +7,9 @@ A self-sufficient runtime for containers
 ### `dockerBuild`
 
 ```ts
-// acao.config.ts
-import { defineConfig, run } from 'acao'
-import { dockerBuild } from 'acao/docker'
+// tsmk.config.ts
+import { defineConfig, run } from 'tsmk'
+import { dockerBuild } from 'tsmk/docker'
 
 export default defineConfig({
   jobs: {
@@ -25,9 +25,9 @@ export default defineConfig({
 ### `dockerLogin`
 
 ```ts
-// acao.config.ts
-import { defineConfig, run } from 'acao'
-import { dockerLogin } from 'acao/docker'
+// tsmk.config.ts
+import { defineConfig, run } from 'tsmk'
+import { dockerLogin } from 'tsmk/docker'
 
 export default defineConfig({
   jobs: {
@@ -43,9 +43,9 @@ export default defineConfig({
 ### `dockerPush`
 
 ```ts
-// acao.config.ts
-import { defineConfig, run } from 'acao'
-import { dockerPush } from 'acao/docker'
+// tsmk.config.ts
+import { defineConfig, run } from 'tsmk'
+import { dockerPush } from 'tsmk/docker'
 
 export default defineConfig({
   jobs: {
@@ -61,9 +61,9 @@ export default defineConfig({
 ### `dockerRun`
 
 ```ts
-// acao.config.ts
-import { defineConfig, run } from 'acao'
-import { dockerRun } from 'acao/docker'
+// tsmk.config.ts
+import { defineConfig, run } from 'tsmk'
+import { dockerRun } from 'tsmk/docker'
 
 export default defineConfig({
   jobs: {
@@ -79,9 +79,9 @@ export default defineConfig({
 ### `dockerRmi`
 
 ```ts
-// acao.config.ts
-import { defineConfig, run } from 'acao'
-import { dockerRmi } from 'acao/docker'
+// tsmk.config.ts
+import { defineConfig, run } from 'tsmk'
+import { dockerRmi } from 'tsmk/docker'
 
 export default defineConfig({
   jobs: {

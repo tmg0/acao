@@ -1,4 +1,4 @@
-import type { AcaoContext, RunOptions } from './types'
+import type { RunOptions, TsmkContext } from './types'
 import { resolve } from 'node:path'
 import process from 'node:process'
 import { colors } from 'consola/utils'
@@ -9,7 +9,7 @@ import { version } from '../../package.json'
 export const isString = (value: any): value is string => typeof value === 'string'
 export const isFunction = (value: any): value is ((...args: any[]) => any) => typeof value === 'function'
 
-export async function execCommand(cmd: string, options: Partial<RunOptions>, ctx: AcaoContext) {
+export async function execCommand(cmd: string, options: Partial<RunOptions>, ctx: TsmkContext) {
   const ssh = options.ssh !== false && ctx.ssh
   return ssh ? await ssh?.execCommand(cmd, options) : await execaCommand(cmd, options)
 }
@@ -42,6 +42,6 @@ export function elegantSpinner() {
 export function pringBanner(logger: any = console) {
   logger.log()
   const _version = colors.blue(`v${version}`)
-  logger.log(`${colors.inverse(colors.bold(' Acao '))} ${_version} ${colors.gray(resolve('.'))}`)
+  logger.log(`${colors.inverse(colors.bold(' Tsmk '))} ${_version} ${colors.gray(resolve('.'))}`)
   logger.log()
 }

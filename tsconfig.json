@@ -7,7 +7,7 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "paths": {
-      "acao": ["src/index.ts"],
+      "tsmk": ["src/index.ts"],
       "@core/*": ["src/core/*.ts"]
     },
     "resolveJsonModule": true,

@@ -1,4 +1,4 @@
-import type { AcaoContext, AcaoJob, Options } from './types'
+import type { Options, TsmkContext, TsmkJob } from './types'
 import { version } from '../../package.json'
 import { resolveOptions } from './options'
 import { run } from './runner'
@@ -9,11 +9,11 @@ export interface RunJobsOptions {
   noNeeds: boolean
 }
 
-export function createAcao(rawOptions: Partial<Options> | undefined | null = {}, { args }: { args?: Record<string, any> } = {}) {
+export function createTsmk(rawOptions: Partial<Options> | undefined | null = {}, { args }: { args?: Record<string, any> } = {}) {
   const options = resolveOptions(rawOptions)
   const jobs = orderJobs(options.jobs)
 
-  const ctx: AcaoContext = {
+  const ctx: TsmkContext = {
     options,
     version,
     args: args ?? {},
@@ -95,7 +95,7 @@ export function filterJobs(jobs: string[][], filters: string[]) {
   return _jobs
 }
 
-export function orderJobs(jobs: Record<string, AcaoJob>) {
+export function orderJobs(jobs: Record<string, TsmkJob>) {
   const inDegree: Record<string, number> = {}
   const graph: Record<string, string[]> = {}
   const sorted = []

@@ -1,4 +1,4 @@
-# @acao/volta
+# @tsmk/volta
 
 Provide some volta commands
 
@@ -9,9 +9,9 @@ Provide some volta commands
 Run a command with custom Node, npm, pnpm, and/or Yarn versions
 
 ```ts
-// acao.config.ts
-import { defineConfig, run } from 'acao'
-import { voltaRun } from 'acao/volta'
+// tsmk.config.ts
+import { defineConfig, run } from 'tsmk'
+import { voltaRun } from 'tsmk/volta'
 
 export default defineConfig({
   jobs: {
@@ -29,9 +29,9 @@ export default defineConfig({
 Locates the actual binary that will be called by Volta
 
 ```ts
-// acao.config.ts
-import { defineConfig, run } from 'acao'
-import { voltaWhich } from 'acao/volta'
+// tsmk.config.ts
+import { defineConfig, run } from 'tsmk'
+import { voltaWhich } from 'tsmk/volta'
 
 export default defineConfig({
   jobs: {
