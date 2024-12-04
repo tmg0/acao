@@ -2,7 +2,7 @@
   "name": "tsmk",
   "type": "module",
   "version": "0.6.1",
-  "description": "Automate your software workflows with javascript.",
+  "description": "Make code review, unit test, and CI/CD works the way just like github actions with typescript",
   "author": "tmg0",
   "license": "MIT",
   "homepage": "https://github.com/tmg0/tsmk#readme",

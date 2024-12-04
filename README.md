@@ -1,6 +1,6 @@
-# Tsmk
+# tsmk
 
-[![NPM version](https://img.shields.io/npm/v/acao)](https://www.npmjs.com/package/acao)
+[![NPM version](https://img.shields.io/npm/v/tsmk)](https://www.npmjs.com/package/tsmk)
 
 🎬 Make code review, unit test, and CI/CD works the way just like github actions with typescript.
 

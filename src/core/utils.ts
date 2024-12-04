@@ -42,6 +42,6 @@ export function elegantSpinner() {
 export function pringBanner(logger: any = console) {
   logger.log()
   const _version = colors.blue(`v${version}`)
-  logger.log(`${colors.inverse(colors.bold(' Tsmk '))} ${_version} ${colors.gray(resolve('.'))}`)
+  logger.log(`${colors.inverse(colors.bold(' TSMK '))} ${_version} ${colors.gray(resolve('.'))}`)
   logger.log()
 }
