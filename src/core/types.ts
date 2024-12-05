@@ -1,11 +1,13 @@
 import type { Options as ExecaOptions } from 'execa'
+import type { Buffer } from 'node:buffer'
 import type { Client } from 'ssh2'
 
 export interface SSHOptions {
   host: string
   username: string
-  password: string
+  password?: string
   port?: string | number
+  privateKey?: Buffer | string
 }
 
 export type TsmkJobStep = (prev: any, ctx: TsmkContext) => Promise<any>
