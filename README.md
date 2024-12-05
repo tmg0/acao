@@ -98,14 +98,6 @@ export default defineConfig({
 })
 ```
 
-### `tsmk record`
-
-Record your input and generate a tsmk config file.
-
-```bash
-tsmk record
-```
-
 ## Config
 
 `tsmk` will execute jobs with order defined in the config file.

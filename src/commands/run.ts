@@ -28,6 +28,8 @@ export default defineCommand({
   },
 
   async run(ctx) {
-    await createTsmk(await loadTsmkConfig(), { args: ctx.args }).runJobs(ctx.args._, { noNeeds: ctx.args.noNeeds })
+    const config = await loadTsmkConfig()
+    const tsmk = createTsmk(config, { args: ctx.args })
+    await tsmk.runJobs(ctx.args._, { noNeeds: ctx.args.noNeeds })
   },
 })
