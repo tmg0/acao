@@ -3,7 +3,7 @@ import { defineConfig } from 'tsup'
 
 export default defineConfig(async (options) => {
   const presets: Record<string, string> = {}
-  const packages = await fg(['packages/*/src/index.ts', '!packages/ui/**'])
+  const packages = await fg('packages/*/src/index.ts')
 
   packages.forEach((path) => {
     const [_, name] = path.split('/')
