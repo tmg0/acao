@@ -5,8 +5,11 @@ import { execCommand, isFunction, transformStdout } from '@core/utils'
 export interface ScpOptions extends RunOptions {
   source: string
   target: string
+  sshConfig?: string
   identityFile?: string
-  r: boolean
+  port?: string | number
+  cipher?: boolean
+  r?: boolean
 }
 
 function runScpCommand(args: (string | string[])[] | string, options: RunOptions, ctx: TsmkContext) {
@@ -19,7 +22,10 @@ export function scp(options: ScpOptions) {
     const _options = isFunction(options) ? await options(prev, ctx) : options
 
     const { stdout } = await runScpCommand([
+      options.sshConfig ? ['-F', options.sshConfig] : '',
       options.identityFile ? ['-i', options.identityFile] : '',
+      options.port ? ['-P', String(options.port)] : '',
+      options.cipher ? '-c' : '',
       options.r ? '-r' : '',
       options.source,
       options.target,
