@@ -1,0 +1,7 @@
+{
+  "name": "@tsmk/scp",
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup"
+  }
+}
